@@ -1,4 +1,5 @@
 package game;
+import java.util.*;
 
 public class Crop {
 	
@@ -7,6 +8,7 @@ public class Crop {
 	private int sellPrice;
 	private int daysUntilHarvest;
 	private int amount = 0;
+	public static List<String> allTypes = Arrays.asList("Corn");
 	
 	public Crop(String newType, int newPPrice, int newSPrice, int maturity) {
 		type = newType;
@@ -40,7 +42,15 @@ public class Crop {
 		return amount;
 	}
 	
-	public void updateAmount(int changedAmount) {
-		amount += changedAmount;
+	public void addCrops(int addingAmount) {
+		amount += addingAmount;
+	}
+	
+	public void updateDays(int shortenBy) {
+		if (daysUntilHarvest - shortenBy < 0) {
+			daysUntilHarvest = 0;
+		} else {
+			daysUntilHarvest -= shortenBy;
+		}
 	}
 }

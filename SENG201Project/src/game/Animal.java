@@ -58,4 +58,12 @@ public class Animal {
 	public int getAmount() {
 		return amount;
 	}
+	
+	public void addAnimals(int addingAmount) {
+		amount += addingAmount;
+	}
+	
+	public void updateHappiness() {
+		happiness += happinessGrowthRate;
+	}
 }

@@ -8,5 +8,14 @@ public class TestClass {
 		ArrayList<Crop> cropList = new ArrayList<Crop>(); 
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		Farm Myfarm = new Farm(10, animalList, cropList, itemList, 1, 1);
+
+		Hoe Hoe1 = new Hoe();
+		Hoe1.useItem(Myfarm, "Corn");
+		
+		Fodder Fodder1 = new Fodder();
+		Fodder1.useItem(Myfarm, "Cow");
+
+
+		
 	}
 }

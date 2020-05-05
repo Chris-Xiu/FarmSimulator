@@ -2,7 +2,7 @@ package game;
 
 public interface Item {
 	
-	public void useItem(Crop newCrop);
+	public void useItem(game.Farm targetClass, String targetObject);
 	
-	public void useItem(Animal newAnimal);
+	
 }

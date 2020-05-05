@@ -82,7 +82,16 @@ public class Farm {
 	
 	public void playWithAnimals() {
 		for (Animal animal: animalsOwned) {
-			animal.updateHappiness();
+			animal.updateHappiness(1);
 		}
 	}
+	
+	public ArrayList<Crop> listCrops() {
+		return cropsOwned;
+	}
+	
+	public ArrayList<Animal> listAnimals() {
+		return animalsOwned;
+	}
+
 }

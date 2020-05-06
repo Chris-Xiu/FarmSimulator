@@ -1,5 +1,6 @@
 package game;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Farm {
 	
@@ -8,6 +9,13 @@ public class Farm {
 	private int moneyOwned;
 	private ArrayList<Animal> animalsOwned;
 	private ArrayList<Crop> cropsOwned;
+
+	//The new Overview Lists
+	private ArrayList<ArrayList<ArrayList<Integer>>> cropsOverview;
+	private ArrayList<ArrayList<ArrayList<Integer>>> animalsOverview;
+	private String [] animalReference = {"Cow", "Sheep", "Deer", "Pig"}; 
+	private String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat"}; 
+	
 	private ArrayList<Item> itemsOwned;
 	private int growingBonus;
 	private int happinessBonus;
@@ -23,7 +31,97 @@ public class Farm {
 		itemsOwned = startingItems;
 		growingBonus = newGrowingBonus;
 		happinessBonus = newHappinessBonus;
+		
+		//Creates empty overview lists
+		createOverviewList();
+
+		//Add starting Animals and Crops to the lists
+		for (Animal newAnimal: animalsOwned) {
+			addAnimalToOverview(newAnimal);
+		}
+		for (Crop newCrop: cropsOwned) {
+			addCropToOverview(newCrop);
+		}
+
 	}
+	
+	public void createOverviewList() {
+		//Create empty lists
+		ArrayList<ArrayList<ArrayList<Integer>>> listStructureAnimals = new ArrayList<ArrayList<ArrayList<Integer>>>();
+		ArrayList<ArrayList<ArrayList<Integer>>> listStructureCrops = new ArrayList<ArrayList<ArrayList<Integer>>>();
+		for (int i = 0; i < 4; i++) {
+			listStructureCrops.add(new ArrayList<ArrayList<Integer>>());
+			listStructureAnimals.add(new ArrayList<ArrayList<Integer>>());
+			listStructureCrops.get(i).add(new ArrayList<Integer>());
+			listStructureAnimals.get(i).add(new ArrayList<Integer>());
+		}
+		//Define crop and animal lists
+		cropsOverview = listStructureCrops;
+		animalsOverview = listStructureAnimals;
+		
+	}
+	
+	//Not generalized because they have different variables
+	public void addAnimalToOverview(Animal newAnimal) {
+		ArrayList<Integer> newAnimalList = new ArrayList<Integer>();
+		newAnimalList.add(newAnimal.getAmount());
+		newAnimalList.add(newAnimal.getHappiness());
+		newAnimalList.add(newAnimal.getHealth());
+		
+		int index = getTypeIndex(newAnimal.getType(), animalReference);
+		if (animalsOverview.get(index).get(0).isEmpty()) {
+			animalsOverview.get(index).remove(0);
+		}
+		animalsOverview.get(index).add(newAnimalList);
+	}
+	
+	public void addCropToOverview(Crop newCrop) {
+		ArrayList<Integer> newCropList = new ArrayList<Integer>();
+		newCropList.add(newCrop.getAmount());
+		newCropList.add(newCrop.getDaysUntilHarvest());
+		
+		int index = getTypeIndex(newCrop.getType(), cropReference);
+		
+		//Remove the empty list when adding a list
+		if (cropsOverview.get(index).get(0).isEmpty()) {
+			cropsOverview.get(index).remove(0);
+		}
+		cropsOverview.get(index).add(newCropList);
+	}
+	
+	public int getTypeIndex(String typeString, String[] reference) {
+		for (int i = 0; i < reference.length; i++) {
+			if (reference[i] == typeString) {
+				return i;
+			}
+			
+		}
+		//It doesn't work if I return nothing outside of the if condition. Alter this to an error message
+		return -1;
+	}
+	
+	// Just an output test
+	public void displayAnimalOverview() {
+		for (int i = 0; i < animalsOverview.size(); i++) {
+			if (!animalsOverview.get(i).get(0).isEmpty()) {
+				for (ArrayList<Integer> j: animalsOverview.get(i)) {
+					System.out.println("You own " + j.get(0) + " " + animalReference[i] + " which have a happiness of " + j.get(1) + " and a health of " + j.get(2) + ".");
+				}
+			}
+		}
+	}
+	
+	public void displayCropOverview() {
+		for (int i = 0; i < cropsOverview.size(); i++) {
+			if (!cropsOverview.get(i).get(0).isEmpty()) {
+				for (ArrayList<Integer> j: cropsOverview.get(i)) {
+					System.out.println("You own " + j.get(0) + " " + cropReference[i] + " which have " + j.get(1) + " days to harvest.");
+				}
+			}
+		}
+	}
+	
+	
 	
 	public String toString() {
 		return ("The farm has " + moneyOwned + " dollars.");
@@ -46,6 +144,8 @@ public class Farm {
 			System.out.println("Not enough money to buy!");
 		} else {
 			newCrop.addCrops(amount);
+			//New line
+			addCropToOverview(newCrop);
 			cropsOwned.add(newCrop);
 			moneyOwned -= newCrop.getPurchasePrice() * amount;
 			amountOfCrops += amount;
@@ -76,7 +176,10 @@ public class Farm {
 	
 	public void buyAnimals(int amount) {
 		Cow newCoW = new Cow();
+		
+		//New Line
 		newCoW.addAnimals(amount);
+		addAnimalToOverview(newCoW);
 		animalsOwned.add(newCoW);
 	}
 	

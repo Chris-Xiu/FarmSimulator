@@ -9,13 +9,14 @@ public class TestClass {
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		Farm Myfarm = new Farm(10, animalList, cropList, itemList, 1, 1);
 
-		Hoe Hoe1 = new Hoe();
-		Hoe1.useItem(Myfarm, "Corn");
+		Myfarm.buyAnimals(2);
+		Myfarm.buyCrops(3);
 		
-		Fodder Fodder1 = new Fodder();
-		Fodder1.useItem(Myfarm, "Cow");
 
+		Myfarm.displayAnimalOverview();
+		Myfarm.displayCropOverview();
 
+		
 		
 	}
 }

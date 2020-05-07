@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public class Fodder implements Item {
 
-	public void useItem(game.Farm currentFarm, String animalType) {
-		ArrayList<Animal> animals = currentFarm.listAnimals();
-		for (Animal animal: animals) {
-			if (animal.getType() == animalType) {
-				animal.updateHappiness(2);
-			}
+	public void useItem(Farm currentFarm, String animalType) {
+		int index = Farm.getTypeIndex(animalType, Farm.animalReference);
+		ArrayList<ArrayList<Animal>> listAnimals = currentFarm.listAnimals();
+		
+		for (Animal animal: listAnimals.get(index)) {
+			animal.updateHappiness(2);
 		}
-	}
-	
+	}	
 }

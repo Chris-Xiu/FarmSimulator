@@ -4,14 +4,16 @@ import java.util.*;
 public class Crop {
 	
 	private String type;
+	private int index;
 	private int purchasePrice;
 	private int sellPrice;
 	private int daysUntilHarvest;
 	private int amount = 0;
 	public static List<String> allTypes = Arrays.asList("Corn");
 	
-	public Crop(String newType, int newPPrice, int newSPrice, int maturity) {
+	public Crop(String newType, int newIndex, int newPPrice, int newSPrice, int maturity) {
 		type = newType;
+		index = newIndex;
 		purchasePrice = newPPrice;
 		sellPrice = newSPrice;
 		daysUntilHarvest = maturity;
@@ -24,6 +26,10 @@ public class Crop {
 	
 	public String getType() {
 		return type;
+	}
+	
+	public int getIndex() {
+		return index;
 	}
 	
 	public int getPurchasePrice() {

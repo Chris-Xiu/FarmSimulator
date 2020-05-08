@@ -58,7 +58,6 @@ public class Farm {
 		//Define crop and animal lists
 		cropsOverview = listStructureCrops;
 		animalsOverview = listStructureAnimals;
-		
 	}
 	
 	//Not generalized because they have different variables
@@ -94,7 +93,6 @@ public class Farm {
 			if (reference[i] == typeString) {
 				return i;
 			}
-			
 		}
 		//It doesn't work if I return nothing outside of the if condition. Alter this to an error message
 		return -1;

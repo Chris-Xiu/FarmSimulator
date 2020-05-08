@@ -36,11 +36,12 @@ public class Farm {
 		for (int i = 0; i < 6; i++) {
 			animalsOwned.add(new ArrayList<Animal>());
 		}
-		
+
 		if (!startingCrops.isEmpty()) {
 			for (Crop crop: startingCrops) {
 				cropsOwned.get(crop.getIndex()).add(crop);
 			}
+
 		}
 		if (!startingAnimals.isEmpty()) {
 			for (Animal animal: startingAnimals) {

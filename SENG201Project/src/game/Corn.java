@@ -3,6 +3,6 @@ package game;
 public class Corn extends Crop {
 	
 	public Corn() {
-		super("Corn", 1, 2, 2);
+		super("Corn", 0, 1, 2, 2);
 	}
 }

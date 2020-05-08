@@ -3,6 +3,7 @@ package game;
 public class Animal {
 	
 	private String type;
+	private int index;
 	private int purchasePrice;
 	private int tendingReward;
 	private int happiness;
@@ -11,8 +12,9 @@ public class Animal {
 	private int healthGrowthRate;
 	private int amount = 0;
 	
-	public Animal(String newType, int newPrice, int newTendingReward, int newHappiness, int newHealth, int newHappinessGR, int newHealthGR) {
+	public Animal(String newType, int newIndex, int newPrice, int newTendingReward, int newHappiness, int newHealth, int newHappinessGR, int newHealthGR) {
 		type = newType;
+		index = newIndex;
 		purchasePrice = newPrice;
 		tendingReward = newTendingReward;
 		happiness = newHappiness;
@@ -29,6 +31,10 @@ public class Animal {
 	
 	public String getType() {
 		return type;
+	}
+	
+	public int getIndex() {
+		return index;
 	}
 	
 	public int getPurchasePrice() {

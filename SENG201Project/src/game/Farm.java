@@ -1,20 +1,16 @@
 package game;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Farm {
 	
 	private String name;
 	private Farmer player;
 	private int moneyOwned;
-	private ArrayList<Animal> animalsOwned;
-	private ArrayList<Crop> cropsOwned;
+	private ArrayList<ArrayList<Crop>> cropsOwned;
+	private ArrayList<ArrayList<Animal>> animalsOwned;
 
-	//The new Overview Lists
-	private ArrayList<ArrayList<ArrayList<Integer>>> cropsOverview;
-	private ArrayList<ArrayList<ArrayList<Integer>>> animalsOverview;
-	private String [] animalReference = {"Cow", "Sheep", "Deer", "Pig"}; 
-	private String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat"}; 
+	public static final String [] animalReference = {"Cow", "Sheep", "Deer"}; 
+	public static final String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat"}; 
 	
 	private ArrayList<Item> itemsOwned;
 	private int growingBonus;
@@ -23,106 +19,67 @@ public class Farm {
 	public static int amountOfCrops = 0;
 	public static int maxHappiness = 10;
 	
-	public Farm(int startingMoney, ArrayList<Animal> startingAnimals, ArrayList<Crop> startingCrops, ArrayList<Item> startingItems, 
+	
+	
+	public Farm(int startingMoney, ArrayList<Crop> startingCrops, ArrayList<Animal> startingAnimals, ArrayList<Item> startingItems, 
 			int newGrowingBonus, int newHappinessBonus) {
 		moneyOwned = startingMoney;
-		animalsOwned = startingAnimals;
-		cropsOwned = startingCrops;
 		itemsOwned = startingItems;
 		growingBonus = newGrowingBonus;
 		happinessBonus = newHappinessBonus;
 		
-		//Creates empty overview lists
-		createOverviewList();
-
-		//Add starting Animals and Crops to the lists
-		for (Animal newAnimal: animalsOwned) {
-			addAnimalToOverview(newAnimal);
+		cropsOwned = new ArrayList<ArrayList<Crop>>();
+		animalsOwned = new ArrayList<ArrayList<Animal>>();
+		for (int i = 0; i < 3; i++) {
+			cropsOwned.add(new ArrayList<Crop>());
 		}
-		for (Crop newCrop: cropsOwned) {
-			addCropToOverview(newCrop);
+		for (int i = 0; i < 6; i++) {
+			animalsOwned.add(new ArrayList<Animal>());
 		}
-
+		
+		if (!startingCrops.isEmpty()) {
+			for (Crop crop: startingCrops) {
+				cropsOwned.get(crop.getIndex()).add(crop);
+			}
+		}
+		if (!startingAnimals.isEmpty()) {
+			for (Animal animal: startingAnimals) {
+				animalsOwned.get(animal.getIndex()).add(animal);
+			}
+		}
 	}
 	
-	public void createOverviewList() {
-		//Create empty lists
-		ArrayList<ArrayList<ArrayList<Integer>>> listStructureAnimals = new ArrayList<ArrayList<ArrayList<Integer>>>();
-		ArrayList<ArrayList<ArrayList<Integer>>> listStructureCrops = new ArrayList<ArrayList<ArrayList<Integer>>>();
-		for (int i = 0; i < 4; i++) {
-			listStructureCrops.add(new ArrayList<ArrayList<Integer>>());
-			listStructureAnimals.add(new ArrayList<ArrayList<Integer>>());
-			listStructureCrops.get(i).add(new ArrayList<Integer>());
-			listStructureAnimals.get(i).add(new ArrayList<Integer>());
-		}
-		//Define crop and animal lists
-		cropsOverview = listStructureCrops;
-		animalsOverview = listStructureAnimals;
-		
-	}
-	
-	//Not generalized because they have different variables
-	public void addAnimalToOverview(Animal newAnimal) {
-		ArrayList<Integer> newAnimalList = new ArrayList<Integer>();
-		newAnimalList.add(newAnimal.getAmount());
-		newAnimalList.add(newAnimal.getHappiness());
-		newAnimalList.add(newAnimal.getHealth());
-		
-		int index = getTypeIndex(newAnimal.getType(), animalReference);
-		if (animalsOverview.get(index).get(0).isEmpty()) {
-			animalsOverview.get(index).remove(0);
-		}
-		animalsOverview.get(index).add(newAnimalList);
-	}
-	
-	public void addCropToOverview(Crop newCrop) {
-		ArrayList<Integer> newCropList = new ArrayList<Integer>();
-		newCropList.add(newCrop.getAmount());
-		newCropList.add(newCrop.getDaysUntilHarvest());
-		
-		int index = getTypeIndex(newCrop.getType(), cropReference);
-		
-		//Remove the empty list when adding a list
-		if (cropsOverview.get(index).get(0).isEmpty()) {
-			cropsOverview.get(index).remove(0);
-		}
-		cropsOverview.get(index).add(newCropList);
-	}
-	
-	public int getTypeIndex(String typeString, String[] reference) {
+	public static int getTypeIndex(String typeString, String[] reference) {
 		for (int i = 0; i < reference.length; i++) {
 			if (reference[i] == typeString) {
 				return i;
 			}
-			
 		}
 		//It doesn't work if I return nothing outside of the if condition. Alter this to an error message
 		return -1;
 	}
 	
-	// Just an output test
-	public void displayAnimalOverview() {
-		for (int i = 0; i < animalsOverview.size(); i++) {
-			if (!animalsOverview.get(i).get(0).isEmpty()) {
-				for (ArrayList<Integer> j: animalsOverview.get(i)) {
-					System.out.println("You own " + j.get(0) + " " + animalReference[i] + " which have a happiness of " + j.get(1) + " and a health of " + j.get(2) + ".");
-				}
-			}
-		}
-	}
-	
 	public void displayCropOverview() {
-		for (int i = 0; i < cropsOverview.size(); i++) {
-			if (!cropsOverview.get(i).get(0).isEmpty()) {
-				for (ArrayList<Integer> j: cropsOverview.get(i)) {
-					System.out.println("You own " + j.get(0) + " " + cropReference[i] + " which have " + j.get(1) + " days to harvest.");
+		for (ArrayList<Crop> list: cropsOwned) {
+			if (!list.isEmpty()) {
+				for (Crop crop: list) {
+					System.out.println("You own " + crop.getAmount() + " " + crop.getType() + " which have " + crop.getDaysUntilHarvest() + " days to harvest.");
 				}
 			}
 		}
 	}
 	
+	public void displayAnimalOverview() {
+		for (ArrayList<Animal> list: animalsOwned) {
+			if (!list.isEmpty()) {
+				for (Animal animal: list) {
+					System.out.println("You own " + animal.getAmount() + " " + animal.getType() + " which have a happiness of " + animal.getHappiness() + " and a health of " + animal.getHealth() + ".");
+				}
+			}
+		}
+	}
 	
-	
+	// Should be more specific
 	public String toString() {
 		return ("The farm has " + moneyOwned + " dollars.");
 	}
@@ -144,56 +101,54 @@ public class Farm {
 			System.out.println("Not enough money to buy!");
 		} else {
 			newCrop.addCrops(amount);
-			//New line
-			addCropToOverview(newCrop);
-			cropsOwned.add(newCrop);
+			cropsOwned.get(newCrop.getIndex()).add(newCrop);
 			moneyOwned -= newCrop.getPurchasePrice() * amount;
 			amountOfCrops += amount;
 		}
 	}
 	
 	public void harvestCrops() {
-		for (Crop crop: cropsOwned) {
-			if (crop.getDaysUntilHarvest() == 0) {
-				String type = crop.getType();
-				int price = crop.getSellPrice();
-				int amount = crop.getAmount();
-				int earning = price * amount;
-				moneyOwned += earning;
-				System.out.println(amount + type + "(s) sold, " + earning + "dollars earned");
-				cropsOwned.remove(crop);
+		for (ArrayList<Crop> list: cropsOwned) {
+			
+			for (Crop crop: new ArrayList<>(list)) {
+				if (crop.getDaysUntilHarvest() == 0) {
+					String type = crop.getType();
+					int price = crop.getSellPrice();
+					int amount = crop.getAmount();
+					int earning = price * amount;
+					moneyOwned += earning;
+					System.out.println(amount + type + "(s) sold, " + earning + "dollars earned");
+					list.remove(crop);
+				}
 			}
 		}
 	}
 	
 	public void waterCrops(int index) {
-		for (Crop crop: cropsOwned) {
-			if (crop.getType() == Crop.allTypes.get(index)) {
-				crop.updateDays(1);
-			}
+		for (Crop crop: cropsOwned.get(index)) {
+			crop.updateDays(1);
 		}
 	}
 	
 	public void buyAnimals(int amount) {
-		Cow newCoW = new Cow();
-		
-		//New Line
-		newCoW.addAnimals(amount);
-		addAnimalToOverview(newCoW);
-		animalsOwned.add(newCoW);
+		Cow newAnimal = new Cow();
+		newAnimal.addAnimals(amount);
+		animalsOwned.get(newAnimal.getIndex()).add(newAnimal);
 	}
 	
 	public void playWithAnimals() {
-		for (Animal animal: animalsOwned) {
-			animal.updateHappiness(1);
+		for (ArrayList<Animal> list: animalsOwned) {
+			for (Animal animal: list) {
+				animal.updateHappiness(1);
+			}
 		}
 	}
 	
-	public ArrayList<Crop> listCrops() {
+	public ArrayList<ArrayList<Crop>> listCrops() {
 		return cropsOwned;
 	}
 	
-	public ArrayList<Animal> listAnimals() {
+	public ArrayList<ArrayList<Animal>> listAnimals() {
 		return animalsOwned;
 	}
 

@@ -2,32 +2,26 @@ package game;
 import java.util.*;
 import java.util.Scanner;
 
-public class TestClass {
+public class TestClass {	
 	public static void main(String[] args) {
+		Scanner stringInput = new Scanner(System.in);
+		Scanner intInput = new Scanner(System.in);
 		
+		System.out.println("Enter a string:");
+		String string1 = stringInput.nextLine();
 		
-		ArrayList<Animal> animalList = new ArrayList<Animal>();
-		Cow myCow = new Cow();
-		myCow.addAnimals(2000);
-		animalList.add(myCow);
+		System.out.println("Enter a number:");
+		int numebr1 = intInput.nextInt();
 		
-		ArrayList<Crop> cropList = new ArrayList<Crop>();
-		ArrayList<Item> itemList = new ArrayList<Item>();
-		Farm myFarm = new Farm(10, cropList, animalList, itemList, 1, 1);
+		System.out.println("Enter a string:");
+		String string2 = stringInput.nextLine();
 		
-		myFarm.buyCrops(3);
-		Hoe myHoe = new Hoe();
-		myHoe.useItem(myFarm, "Corn");
-		myFarm.buyCrops(3);
+		System.out.println("Enter a number:");
+		int numebr2 = intInput.nextInt();
 		
-		myFarm.displayAnimalOverview();
-		myFarm.displayCropOverview();
-		
-		
-		
-		Scanner input = new Scanner(System.in);
-		System.out.println("Enter some string:");
-		String someString = input.nextLine();
-		System.out.println("The string is : " + someString);
+		System.out.println(string1);
+		System.out.println(string2);
+		System.out.println(numebr1);
+		System.out.println(numebr2);
 	}
 }

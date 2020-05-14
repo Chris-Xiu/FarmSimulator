@@ -28,6 +28,78 @@ public class GameEnvironment {
 		goingToNextDay = true;
 	}
 	
+	public static void OptionFive(Farm myFarm) {
+		Scanner input3 = new Scanner(System.in);
+		System.out.println("Which of your crops would you like to tend:");
+		System.out.println("===================================================");
+		ArrayList<Integer> overviewList = myFarm.getCropTypeList();
+		int typeIndex = Farm.selectType(overviewList, Farm.cropReference);
+		
+		System.out.println("Which action would you like to take:");
+		System.out.println("===================================================");
+		System.out.println("1. Water crop");
+		System.out.println("2. Use an item");
+		
+		int option5 = input3.nextInt();
+		while ((option5 > 2) || (option5 < 1)) {
+			System.out.println("You entered an invalid option number, try again.");
+			option5 = input3.nextInt();
+		}
+		
+		if (option5 == 1) {
+			//Modify that crops time to harvest
+			myFarm.waterCrops(typeIndex);
+		} else {
+			//Show list of items
+			ArrayList<Integer> itemList = myFarm.getItemAvailable(0, 3);
+			int itemIndex = Farm.selectType(itemList, Farm.itemReference);
+			//Use one item
+			myFarm.getItemList().get(itemIndex).useItem(myFarm, typeIndex);
+			System.out.println("You used " + Farm.itemReference[itemIndex] + " on your " + Farm.cropReference[typeIndex]);
+		}
+		
+	}
+	
+	public static void OptionSix(Farm myFarm) {
+		Scanner input3 = new Scanner(System.in);
+		System.out.println("Which of your animals would you like to feed:");
+		System.out.println("===================================================");
+		ArrayList<Integer> overviewList = myFarm.getAnimalTypeList();
+		int typeIndex = Farm.selectType(overviewList, Farm.animalReference);
+		
+		System.out.println("Which action would you like to take:");
+		System.out.println("===================================================");
+		System.out.println("1. Feed animal");
+		System.out.println("2. Use an item");
+		
+		int option6 = input3.nextInt();
+		while ((option6 > 2) || (option6 < 1)) {
+			System.out.println("You entered an invalid option number, try again.");
+			option6 = input3.nextInt();
+		}
+		
+		if (option6 == 1) {
+			//Modify that crops time to harvest
+			myFarm.feedAnimals(typeIndex);
+		} else {
+			//Show list of items
+			ArrayList<Integer> itemList = myFarm.getItemAvailable(3, 6);
+			int itemIndex = Farm.selectType(itemList, Farm.itemReference);
+			//Use one item
+			myFarm.getItemList().get(itemIndex).useItem(myFarm, typeIndex);
+			System.out.println("You used " + Farm.itemReference[itemIndex] + " on your " + Farm.animalReference[typeIndex]);
+		}
+	}
+	
+	public static void OptionSeven(Farm myFarm) {
+		System.out.println("Which of your animals would you like to play with:");
+		System.out.println("===================================================");
+		ArrayList<Integer> overviewList = myFarm.getAnimalTypeList();
+		int typeIndex = Farm.selectType(overviewList, Farm.animalReference);
+		myFarm.playWithAnimals(typeIndex);
+		System.out.println("You played with your " + Farm.animalReference[typeIndex]);
+	}
+	
 	public static void OptionActions() {
 		if (actionTaken < 2) {
 			System.out.println("This one is not yet implemented! But it shall still count as an action taken, bad luck!");
@@ -53,13 +125,26 @@ public class GameEnvironment {
 		
 		ArrayList<Crop> cropList = new ArrayList<Crop>();
 		ArrayList<Item> itemList = new ArrayList<Item>();
+		Fodder myFodder = new Fodder(1);
+		FreshHay myFreshHay = new FreshHay(0);
+		NewPaddock myNewPaddock = new NewPaddock(0);
+		TenEighty myTenEighty = new TenEighty(1);
+		Fertilizer myFertilizer = new Fertilizer(0);
+		Irrigation myIrrigation = new Irrigation(0);
+		itemList.add(myFodder);
+		itemList.add(myFreshHay);
+		itemList.add(myNewPaddock);
+		itemList.add(myTenEighty);
+		itemList.add(myFertilizer);
+		itemList.add(myIrrigation);
 		
 		Farm myFarm = new Farm(10, cropList, animalList, itemList, 1, 1);
 		
 		myFarm.buyCrops(3);
-		Hoe myHoe = new Hoe();
-		myHoe.useItem(myFarm, "Corn");
-		myFarm.buyCrops(3);
+
+		//The store could create the instances (perhaps if you buy one it creates a new instance)
+		myFarm.buyItem(myFodder);
+		
 		// Ends here
 		
 		// Main while loop of the game
@@ -76,7 +161,7 @@ public class GameEnvironment {
 				System.out.println("Option 2: Check your wallet.");
 				System.out.println("Option 3: Visit the county's general store.");
 				System.out.println("Option 4: Move on to the next day");
-				System.out.println("Option 5: Water your crops. (Counts as one action of the day)");
+				System.out.println("Option 5: Tend to your crops. (Counts as one action of the day)");
 				System.out.println("Option 6: Feed your animals. (Counts as one action of the day)");
 				System.out.println("Option 7: Play with your animals. (Counts as one action of the day)");
 				System.out.println("Option 8: Harvest your crops. (Counts as one action of the day)");
@@ -97,6 +182,12 @@ public class GameEnvironment {
 					GameEnvironment.OptionThree();
 				} else if (option == 4) {
 					GameEnvironment.OptionFour();
+				} else if (option == 5) {
+					GameEnvironment.OptionFive(myFarm);
+				} else if (option == 6) {
+					GameEnvironment.OptionSix(myFarm);
+				} else if (option == 7) {
+					GameEnvironment.OptionSeven(myFarm);
 				} else {
 					GameEnvironment.OptionActions();
 				}

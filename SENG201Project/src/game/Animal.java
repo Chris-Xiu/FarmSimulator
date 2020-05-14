@@ -72,4 +72,8 @@ public class Animal {
 	public void updateHappiness(int amount) {
 		happiness += amount;
 	}
+	
+	public void updateHealth(int amount) {
+		health += amount;
+	}
 }

@@ -10,7 +10,7 @@ public class Farm {
 	private ArrayList<ArrayList<Animal>> animalsOwned;
 
 	public static final String [] animalReference = {"Cow", "Sheep", "Deer"}; 
-	public static final String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat"};
+  public static final String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat", "Tomato", "Carrot"};
 	public static final String [] itemReference = {"1080", "Fertilizer", "Irrigation", "Fodder", "Fresh Hay", "New Paddock"}; 
 	
 	private ArrayList<Item> itemsOwned;
@@ -137,7 +137,6 @@ public class Farm {
 		}
 	}
 	
-	// Should be more specific
 	public String toString() {
 		return ("The farm has " + moneyOwned + " dollars.");
 	}
@@ -150,10 +149,13 @@ public class Farm {
 		player = newFarmer;
 	}
 	
-
-	
-	public void buyCrops(int amount) {
-		Crop newCrop = new Corn();
+	public void buyCrops(int amount, int index) {
+		Crop newCrop;
+		if (index == 1) {
+			newCrop = new Corn();
+		} else {
+			newCrop = new Corn();
+		}
 		
 		if (amount + amountOfCrops > maxCrops) {
 			System.out.println("Not enough space to plant!");
@@ -190,10 +192,21 @@ public class Farm {
 		}
 	}
 	
-	public void buyAnimals(int amount) {
-		Cow newAnimal = new Cow();
-		newAnimal.addAnimals(amount);
-		animalsOwned.get(newAnimal.getIndex()).add(newAnimal);
+	public void buyAnimals(int amount, int index) {
+		Animal newAnimal;
+		if (index == 1) {
+			newAnimal = new Cow();
+		} else {
+			newAnimal = new Cow();
+		}
+		
+		if (newAnimal.getPurchasePrice() * amount > moneyOwned) {
+			System.out.println("Not enough money to buy!");
+		} else {
+			newAnimal.addAnimals(amount);
+			animalsOwned.get(newAnimal.getIndex()).add(newAnimal);
+			moneyOwned -= newAnimal.getPurchasePrice() * amount;
+		}
 	}
 	
 	public void playWithAnimals(int type) {
@@ -216,5 +229,9 @@ public class Farm {
 	public ArrayList<ArrayList<Animal>> listAnimals() {
 		return animalsOwned;
 	}
-
+	
+	public static void tending() {
+		maxCrops += 5;
+		maxHappiness += 5;
+	}
 }

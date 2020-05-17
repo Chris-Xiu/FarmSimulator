@@ -10,8 +10,8 @@ public class Farm {
 	private ArrayList<ArrayList<Animal>> animalsOwned;
 
 	public static final String [] animalReference = {"Cow", "Sheep", "Deer"}; 
-	public static final String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat", "Tomato", "Carrot"};
-	public static final String [] itemReference = {"Hoe", "Fertilizer", "Irrigation", "Fodder", "FreshHay", "NewPaddock"};
+  public static final String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat", "Tomato", "Carrot"};
+	public static final String [] itemReference = {"1080", "Fertilizer", "Irrigation", "Fodder", "Fresh Hay", "New Paddock"}; 
 	
 	private ArrayList<Item> itemsOwned;
 	private int growingBonus;
@@ -51,14 +51,70 @@ public class Farm {
 		}
 	}
 	
-	public static int getTypeIndex(String typeString, String[] reference) {
-		for (int i = 0; i < reference.length; i++) {
-			if (reference[i] == typeString) {
-				return i;
+	public ArrayList<ArrayList<Animal>> getAnimalList() {
+		return animalsOwned;
+	}
+	
+	public ArrayList<ArrayList<Crop>> getCropList() {
+		return cropsOwned;
+	}
+	
+	public ArrayList<Item> getItemList() {
+		return itemsOwned;
+	}
+	
+	//Creates a list of type's that an item can be applied to. Needs an error condition if none are owned.
+	public ArrayList<Integer> getCropTypeList() {
+		ArrayList<Integer> queryList = new ArrayList<Integer>();
+		for (int i = 0; i < cropsOwned.size(); i++) {
+			if (!cropsOwned.get(i).isEmpty()) {
+				queryList.add(i);
 			}
 		}
-		//It doesn't work if I return nothing outside of the if condition. Alter this to an error message
-		return -1;
+		return queryList;
+	}
+	
+	//Creates a list of type's that an item can be applied to. Needs an error condition if none are owned.
+	public ArrayList<Integer> getAnimalTypeList() {
+		ArrayList<Integer> queryList = new ArrayList<Integer>();
+		for (int i = 0; i < animalsOwned.size(); i++) {
+			if (!animalsOwned.get(i).isEmpty()) {
+				queryList.add(i);
+			}
+		}
+		return queryList;
+	}
+	
+	//Creates a list of items available. Needs an error condition if none are owned.
+	public ArrayList<Integer> getItemAvailable(int start, int end) {
+		ArrayList<Integer> queryList = new ArrayList<Integer>();
+		for (int i = start; i < end; i++) {
+			if (itemsOwned.get(i).getAmount() != 0) {
+				queryList.add(i);
+			}
+		}
+		return queryList;
+	}
+	
+	//Returns the index of a user selected type,
+	public static int selectType(ArrayList<Integer> queryList, String[] queryReference) {
+		int index = 1;
+		Scanner selector = new Scanner(System.in);
+		System.out.println("Please select a type: ");
+		for (int target: queryList) {
+			System.out.println("\n" + index + " " + queryReference[target]);
+			index++;
+		}
+		//User input is taken, converted to an integer, and the correct index for the storage list is retrieved.
+		int getIndex = selector.nextInt();
+		int typeIndex = queryList.get(getIndex -1);
+		//Returns the index
+		return typeIndex;
+	}
+	
+	public void buyItem(Item newItem) {
+		//newItem.amount +=1;
+		newItem.changeAmount(1);
 	}
 	
 	public void displayCropOverview() {
@@ -153,12 +209,17 @@ public class Farm {
 		}
 	}
 	
-	public void playWithAnimals() {
-		for (ArrayList<Animal> list: animalsOwned) {
-			for (Animal animal: list) {
-				animal.updateHappiness(1);
-			}
+	public void playWithAnimals(int type) {
+		for (Animal animal: animalsOwned.get(type)) {
+			animal.updateHappiness(1);
 		}
+	}
+	
+	public void feedAnimals(int type) {
+		for (Animal animal: animalsOwned.get(type)) {
+			animal.updateHealth(1);
+		}
+		
 	}
 	
 	public ArrayList<ArrayList<Crop>> listCrops() {

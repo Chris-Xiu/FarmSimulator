@@ -1,9 +1,9 @@
 package game;
 
-public class Fodder implements Item {
+public class NewPaddock implements Item {
 	private int amount;
 	
-	public Fodder(int initialAmount) {
+	public NewPaddock(int initialAmount) {
 		amount = initialAmount;
 	}
 	

@@ -1,15 +1,15 @@
 package game;
 
-public class Fodder implements Item {
+public class Fertilizer implements Item {
 	private int amount;
 	
-	public Fodder(int initialAmount) {
+	public Fertilizer(int initialAmount) {
 		amount = initialAmount;
 	}
 	
 	public void useItem(Farm inputFarm, int typeIndex) {
-		for (Animal animal: inputFarm.getAnimalList().get(typeIndex)) {
-			animal.updateHappiness(2);
+		for (Crop crop: inputFarm.getCropList().get(typeIndex)) {
+			crop.updateDays(2);
 		}
 		this.changeAmount(-1);
 	}
@@ -21,6 +21,4 @@ public class Fodder implements Item {
 	public void changeAmount(int change) {
 		amount += change;
 	}
-	
 }
-

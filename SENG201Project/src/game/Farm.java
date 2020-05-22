@@ -10,7 +10,7 @@ public class Farm {
 	private ArrayList<ArrayList<Crop>> cropsOwned;
 	private ArrayList<ArrayList<Animal>> animalsOwned;
 	private ArrayList<Item> itemsOwned;
-	
+
 	private int growingBonus;
 	private int happinessBonus;
 	
@@ -28,7 +28,6 @@ public class Farm {
 	
 	public Farm(String type) {
 		moneyOwned = 10;
-		
 		cropsOwned = new ArrayList<ArrayList<Crop>>();
 		animalsOwned = new ArrayList<ArrayList<Animal>>();
 		itemsOwned = new ArrayList<Item>();
@@ -248,6 +247,10 @@ public class Farm {
 			moneyOwned -= newAnimal.getPurchasePrice() * amount;
 			amountOfAnimals += amount;
 		}
+	}
+	
+	public void buyItem(int type) {
+		itemsOwned.get(type).changeAmount(1);
 	}
 	
 	public void playWithAnimals(int type) {

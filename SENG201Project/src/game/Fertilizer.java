@@ -8,15 +8,15 @@ public class Fertilizer implements Item {
 		amount = 0;
 	}
 	
-	public Fertilizer(int initialAmount) {
-		amount = initialAmount;
-	}
-	
 	public void useItem(Farm inputFarm, int typeIndex) {
 		for (Crop crop: inputFarm.getCropList().get(typeIndex)) {
 			crop.updateDays(2);
 		}
 		this.changeAmount(-1);
+	}
+	
+	public void setAmount(int initialAmount) {
+		amount = initialAmount;
 	}
 	
 	public int getAmount() {

@@ -2,7 +2,7 @@ package game;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CommandLineApplication {
+public class CommandLine {
 	
 	private static int gameDuration;
 	private static int currentDay = 1;
@@ -75,8 +75,8 @@ public class CommandLineApplication {
 		
 		while (!isFinished) {
 			System.out.println("Welcome to the store, here is an overview of what you have:");
-			CommandLineApplication.OptionOne(myFarm);
-			CommandLineApplication.OptionTwo(myFarm);
+			CommandLine.OptionOne(myFarm);
+			CommandLine.OptionTwo(myFarm);
 			
 			Scanner input1 = new Scanner(System.in);
 			System.out.println("You can do the following things in store.");
@@ -285,25 +285,25 @@ public class CommandLineApplication {
 				}
 				
 				if (option == 1) {
-					CommandLineApplication.OptionOne(myFarm);
+					CommandLine.OptionOne(myFarm);
 				} else if (option == 2) {
-					CommandLineApplication.OptionTwo(myFarm);
+					CommandLine.OptionTwo(myFarm);
 				} else if (option == 3) {
-					CommandLineApplication.OptionThree(myFarm);
+					CommandLine.OptionThree(myFarm);
 				} else if (option == 4) {
-					CommandLineApplication.OptionFour();
+					CommandLine.OptionFour();
 				} else if (option == 5) {
-					CommandLineApplication.OptionFive(myFarm);
+					CommandLine.OptionFive(myFarm);
 				} else if (option == 6) {
-					CommandLineApplication.OptionSix(myFarm);
+					CommandLine.OptionSix(myFarm);
 				} else if (option == 7) {
-					CommandLineApplication.OptionSeven(myFarm);
+					CommandLine.OptionSeven(myFarm);
 				} else if (option == 8) {
-					CommandLineApplication.OptionEight(myFarm);
+					CommandLine.OptionEight(myFarm);
 				} else if (option == 9) {
-					CommandLineApplication.OptionNine(myFarm);
+					CommandLine.OptionNine(myFarm);
 				} else {
-					CommandLineApplication.OptionActions();
+					CommandLine.OptionActions();
 				}
 			}
 			System.out.println("Day " + currentDay + " has ended, have a good night");

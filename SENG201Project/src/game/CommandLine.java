@@ -2,7 +2,7 @@ package game;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GameEnvironment {
+public class CommandLine {
 	
 	private static int gameDuration;
 	private static int currentDay = 1;
@@ -17,35 +17,34 @@ public class GameEnvironment {
 			System.out.println("You entered an invalid duration, try again.");
 			days = input.nextInt();
 		}
+		input.close();
 		gameDuration = days;
 	}
 	
 	private static Farm setUpFarm() {
-		Scanner input1 = new Scanner(System.in);
+		Scanner input0 = new Scanner(System.in);
 		System.out.println("What is your name?");
-		String farmerName = input1.nextLine();
-		
-		Scanner input2 = new Scanner(System.in);
+		String farmerName = input0.nextLine();
+
 		System.out.println("How old are you?");
-		int farmerAge = input2.nextInt();
+		int farmerAge = input0.nextInt();
 		
 		Farmer myFarmer = new Farmer(farmerName, farmerAge);
 		
-		Scanner input3 = new Scanner(System.in);
+
 		System.out.println("There are two types of farms to choose from:");
 		System.out.println("===================================================");
 		System.out.println("Option 1: Cow Farm (You start the game with 5 cows)");
 		System.out.println("Option 2: Millionaire Farm (You start the game with an extra 10 bucks)");
-		int option = input3.nextInt();
+		int option = input0.nextInt();
 		while ((option > 2) || (option < 1)) {
 			System.out.println("You entered an invalid option number, try again.");
-			option = input3.nextInt();
+			option = input0.nextInt();
 		}
-		
-		Scanner input4 = new Scanner(System.in);
+
 		System.out.println("How would you like to name your farm?");
-		String farmName = input4.nextLine();
-		
+		String farmName = input0.nextLine();
+		input0.close();
 		if (option == 1) {
 			ArrayList<Animal> animalList = new ArrayList<Animal>();
 			Cow myCow = new Cow();
@@ -54,6 +53,14 @@ public class GameEnvironment {
 			
 			ArrayList<Crop> cropList = new ArrayList<Crop>();
 			ArrayList<Item> itemList = new ArrayList<Item>();
+			
+			//This needs to be set up properly
+			Fodder myFodder = new Fodder();
+			FreshHay myFreshHay = new FreshHay();
+			NewPaddock myNewPaddock = new NewPaddock();
+			TenEighty myTenEighty = new TenEighty();
+			Fertilizer myFertilizer = new Fertilizer();
+			Irrigation myIrrigation = new Irrigation();
 			
 			Farm myFarm = new Farm(10, cropList, animalList, itemList, 1, 1);
 			myFarm.setFarmer(myFarmer);
@@ -69,6 +76,7 @@ public class GameEnvironment {
 			myFarm.setName(farmName);
 			return myFarm;
 		}
+		
 	}
 	
 	public static void OptionOne(Farm myFarm) {
@@ -87,34 +95,35 @@ public class GameEnvironment {
 		
 		while (!isFinished) {
 			System.out.println("Welcome to the store, here is an overview of what you have:");
-			GameEnvironment.OptionOne(myFarm);
-			GameEnvironment.OptionTwo(myFarm);
+			CommandLine.OptionOne(myFarm);
+			CommandLine.OptionTwo(myFarm);
 			
-			Scanner input1 = new Scanner(System.in);
+			boolean[] itemSold = new boolean[6];
+			
+			Scanner input3 = new Scanner(System.in);
 			System.out.println("You can do the following things in store.");
 			System.out.println("===================================================");
 			System.out.println("Option 1: Buy goods.");
 			System.out.println("Option 2: Leave the store.");
 			
-			int option = input1.nextInt();
+			int option = input3.nextInt();
 			while ((option > 2) || (option < 1)) {
 				System.out.println("You entered an invalid option number, try again.");
-				option = input1.nextInt();
+				option = input3.nextInt();
 			}
 			
 			
 			
 			if (option == 1) {
-				Scanner input2 = new Scanner(System.in);
 				System.out.println("What type of good would you like to buy?");
 				System.out.println("===================================================");
 				System.out.println("Type 1: Crops");
 				System.out.println("Type 2: Animals");
 				System.out.println("Type 3: Items");
-				int type = input2.nextInt();
+				int type = input3.nextInt();
 				while ((type > 3) || (type < 1)) {
 					System.out.println("You entered an invalid type number, try again.");
-					type = input2.nextInt();
+					type = input3.nextInt();
 				}
 				
 				if (type == 1) {
@@ -122,7 +131,6 @@ public class GameEnvironment {
 					for (int i = 0; i <6; i++) {
 						System.out.println("Crop " + (i+1) + " : " + Farm.cropReference[i] + ". Each one cost 1 dollar");
 					}
-					Scanner input3 = new Scanner(System.in);
 					System.out.println("Which crop would you like to buy");
 					int typeCrop = input3.nextInt();
 					while ((typeCrop > 6) || (typeCrop < 1)) {
@@ -130,36 +138,46 @@ public class GameEnvironment {
 						typeCrop = input3.nextInt();
 						}
 					
-					Scanner input4 = new Scanner(System.in);
+
 					System.out.println("How many would you like to buy?");
-					int cropAmount = input4.nextInt();
-					myFarm.buyCrops(cropAmount, typeCrop);
-					
-					
+					int cropAmount = input3.nextInt();
+					myFarm.buyCrops(cropAmount, typeCrop);					
 					
 				} else if (type == 2){
 					System.out.println("You can purchase the following animals:");
 					for (int i = 0; i <3; i++) {
 						System.out.println("Animal " + i + " : " + Farm.animalReference[i] + ". Each one cost 3 dollar");
 					}
-					Scanner input5 = new Scanner(System.in);
+
 					System.out.println("Which animal would you like to buy");
-					int typeAnimal = input5.nextInt();
+					int typeAnimal = input3.nextInt();
 					while ((typeAnimal > 3) || (typeAnimal < 1)) {
 						System.out.println("You entered an invalid animal number, try again.");
-						typeAnimal = input5.nextInt();
+						typeAnimal = input3.nextInt();
 						}
 					
-					Scanner input6 = new Scanner(System.in);
 					System.out.println("How many would you like to buy?");
-					int animalAmount = input6.nextInt();
+					int animalAmount = input3.nextInt();
 					myFarm.buyCrops(animalAmount, typeAnimal);
 					
+				} else if (type == 3){
+					System.out.println("You can purchase the following animals:");
+					for (int i = 0; i <6; i++) {
+						System.out.println("Item " + i + " : " + Farm.itemReference[i] + ". Each one cost 5 dollar");
+					}
+					System.out.println("Which item would you like to buy");
+					int typeItem = input3.nextInt();
+					while ((typeItem > 7) || (typeItem < 1)) {
+						System.out.println("You entered an invalid animal number, try again.");
+						typeItem = input3.nextInt();
+						}
+					if (itemSold[typeItem] == true) {
+						System.out.println("You can only buy one of each item per turn.");
+						typeItem = input3.nextInt();
+					}
 					
-					
-				} else {
-					// Not yet implemented
-					System.out.println("Not yet implemented");
+					itemSold[typeItem] = true;
+					myFarm.buyItem(typeItem);
 				}
 			
 			
@@ -167,6 +185,7 @@ public class GameEnvironment {
 			} else {
 				isFinished = true;
 			}
+			input3.close();
 		}
 		System.out.println("Thank you for visiting the store!");
 	}
@@ -176,7 +195,7 @@ public class GameEnvironment {
 	}
 	
 	public static void OptionFive(Farm myFarm) {
-		Scanner input3 = new Scanner(System.in);
+		Scanner input5 = new Scanner(System.in);
 		System.out.println("Which of your crops would you like to tend:");
 		System.out.println("===================================================");
 		ArrayList<Integer> overviewList = myFarm.getCropTypeList();
@@ -187,10 +206,10 @@ public class GameEnvironment {
 		System.out.println("1. Water crop");
 		System.out.println("2. Use an item");
 		
-		int option5 = input3.nextInt();
+		int option5 = input5.nextInt();
 		while ((option5 > 2) || (option5 < 1)) {
 			System.out.println("You entered an invalid option number, try again.");
-			option5 = input3.nextInt();
+			option5 = input5.nextInt();
 		}
 		
 		if (option5 == 1) {
@@ -204,11 +223,11 @@ public class GameEnvironment {
 			myFarm.getItemList().get(itemIndex).useItem(myFarm, typeIndex);
 			System.out.println("You used " + Farm.itemReference[itemIndex] + " on your " + Farm.cropReference[typeIndex]);
 		}
-		
+		input5.close();
 	}
 	
 	public static void OptionSix(Farm myFarm) {
-		Scanner input3 = new Scanner(System.in);
+		Scanner input6 = new Scanner(System.in);
 		System.out.println("Which of your animals would you like to feed:");
 		System.out.println("===================================================");
 		ArrayList<Integer> overviewList = myFarm.getAnimalTypeList();
@@ -219,11 +238,12 @@ public class GameEnvironment {
 		System.out.println("1. Feed animal");
 		System.out.println("2. Use an item");
 		
-		int option6 = input3.nextInt();
+		int option6 = input6.nextInt();
 		while ((option6 > 2) || (option6 < 1)) {
 			System.out.println("You entered an invalid option number, try again.");
-			option6 = input3.nextInt();
+			option6 = input6.nextInt();
 		}
+		input6.close();
 		
 		if (option6 == 1) {
 			//Modify that crops time to harvest
@@ -269,30 +289,6 @@ public class GameEnvironment {
 		
 		Farm myFarm = setUpFarm();
 		
-		ArrayList<Crop> cropList = new ArrayList<Crop>();
-		ArrayList<Item> itemList = new ArrayList<Item>();
-		Fodder myFodder = new Fodder(1);
-		FreshHay myFreshHay = new FreshHay(0);
-		NewPaddock myNewPaddock = new NewPaddock(0);
-		TenEighty myTenEighty = new TenEighty(1);
-		Fertilizer myFertilizer = new Fertilizer(0);
-		Irrigation myIrrigation = new Irrigation(0);
-		itemList.add(myFodder);
-		itemList.add(myFreshHay);
-		itemList.add(myNewPaddock);
-		itemList.add(myTenEighty);
-		itemList.add(myFertilizer);
-		itemList.add(myIrrigation);
-		
-		Farm myFarm = new Farm(10, cropList, animalList, itemList, 1, 1);
-		
-		myFarm.buyCrops(3);
-
-		//The store could create the instances (perhaps if you buy one it creates a new instance)
-		myFarm.buyItem(myFodder);
-		
-		// Ends here
-		
 		// Main while loop of the game
 		while (currentDay <= gameDuration) {
 			System.out.println("Good morning! This is day " + currentDay);
@@ -319,27 +315,28 @@ public class GameEnvironment {
 					System.out.println("You entered an invalid option number, try again.");
 					option = choice.nextInt();
 				}
+				choice.close();
 				
 				if (option == 1) {
-					GameEnvironment.OptionOne(myFarm);
+					CommandLine.OptionOne(myFarm);
 				} else if (option == 2) {
-					GameEnvironment.OptionTwo(myFarm);
+					CommandLine.OptionTwo(myFarm);
 				} else if (option == 3) {
-					GameEnvironment.OptionThree(myFarm);
+					CommandLine.OptionThree(myFarm);
 				} else if (option == 4) {
-					GameEnvironment.OptionFour();
+					CommandLine.OptionFour();
 				} else if (option == 5) {
-					GameEnvironment.OptionFive(myFarm);
+					CommandLine.OptionFive(myFarm);
 				} else if (option == 6) {
-					GameEnvironment.OptionSix(myFarm);
+					CommandLine.OptionSix(myFarm);
 				} else if (option == 7) {
-					GameEnvironment.OptionSeven(myFarm);
+					CommandLine.OptionSeven(myFarm);
 				} else if (option == 8) {
-					GameEnvironment.OptionEight(myFarm);
+					CommandLine.OptionEight(myFarm);
 				} else if (option == 9) {
-					GameEnvironment.OptionNine();
+					CommandLine.OptionNine();
 				} else {
-					GameEnvironment.OptionActions();
+					CommandLine.OptionActions();
 				}
 			}
 			System.out.println("Day " + currentDay + " has ended, have a good night");

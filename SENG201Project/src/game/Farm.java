@@ -8,12 +8,10 @@ public class Farm {
 	private int moneyOwned;
 	private ArrayList<ArrayList<Crop>> cropsOwned;
 	private ArrayList<ArrayList<Animal>> animalsOwned;
-
-	public static final String [] animalReference = {"Cow", "Sheep", "Deer"}; 
-  public static final String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat", "Tomato", "Carrot"};
-	public static final String [] itemReference = {"1080", "Fertilizer", "Irrigation", "Fodder", "Fresh Hay", "New Paddock"}; 
-	
 	private ArrayList<Item> itemsOwned;
+	public static final String [] animalReference = {"Cow", "Sheep", "Deer"}; 
+	public static final String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat", "Tomato", "Carrot"};
+	public static final String [] itemReference = {"1080", "Fertilizer", "Irrigation", "Fodder", "Fresh Hay", "New Paddock"}; 
 	private int growingBonus;
 	private int happinessBonus;
 	public static int maxCrops = 10;
@@ -28,9 +26,9 @@ public class Farm {
 		itemsOwned = startingItems;
 		growingBonus = newGrowingBonus;
 		happinessBonus = newHappinessBonus;
-		
 		cropsOwned = new ArrayList<ArrayList<Crop>>();
 		animalsOwned = new ArrayList<ArrayList<Animal>>();
+		itemsOwned = new ArrayList<Item>();
 		for (int i = 0; i < 3; i++) {
 			cropsOwned.add(new ArrayList<Crop>());
 		}
@@ -209,6 +207,10 @@ public class Farm {
 		}
 	}
 	
+	public void buyItem(int type) {
+		itemsOwned.get(type).changeAmount(1);
+	}
+	
 	public void playWithAnimals(int type) {
 		for (Animal animal: animalsOwned.get(type)) {
 			animal.updateHappiness(1);
@@ -220,14 +222,6 @@ public class Farm {
 			animal.updateHealth(1);
 		}
 		
-	}
-	
-	public ArrayList<ArrayList<Crop>> listCrops() {
-		return cropsOwned;
-	}
-	
-	public ArrayList<ArrayList<Animal>> listAnimals() {
-		return animalsOwned;
 	}
 	
 	public static void tending() {

@@ -4,6 +4,16 @@ import java.util.ArrayList;
 
 public class TenEighty implements Item {
 	private int amount;
+	private String name = "1080";
+	
+	public TenEighty() {
+		amount = 0;
+	}
+	
+	public TenEighty(int initialAmount) {
+		amount = initialAmount;
+	}
+
 
 	public void useItem(Farm inputFarm, int typeIndex) {
 		//Reduce time to harvest by 2
@@ -31,5 +41,9 @@ public class TenEighty implements Item {
 	
 	public void changeAmount(int change) {
 		amount += change;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

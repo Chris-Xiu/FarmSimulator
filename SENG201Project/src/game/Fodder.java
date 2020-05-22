@@ -2,11 +2,16 @@ package game;
 
 public class Fodder implements Item {
 	private int amount;
+	private String name = "Fodder";
+	
+	public Fodder() {
+		amount = 0;
+	}
 	
 	public void useItem(Farm inputFarm, int typeIndex) {
 		for (Animal animal: inputFarm.getAnimalList().get(typeIndex)) {
-			animal.updateHappiness(1);
-			animal.updateHappinessGrowth(1);
+			animal.updateHealth(2);
+			animal.updateHealthGrowth(1);
 		}
 		this.changeAmount(-1);
 	}
@@ -23,5 +28,8 @@ public class Fodder implements Item {
 		amount += change;
 	}
 	
+	public String getName() {
+		return name;
+	}
 }
 

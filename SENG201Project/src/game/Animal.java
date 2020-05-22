@@ -22,8 +22,7 @@ public class Animal {
 	}
 	
 	public String toString() {
-		return ("The name of the animal is " + type + ", currently you have " + amount + " in your farm. The price of it is " + purchasePrice + 
-				". Their happiness is at level " + happiness + " and their health is at level " + health + ".");
+		return (amount + " " + type + " with happiness of " + happiness + " and health of " + health);
 	}
 	
 	public String getType() {

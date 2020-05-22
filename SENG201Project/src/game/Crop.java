@@ -20,8 +20,7 @@ public class Crop {
 	}
 	
 	public String toString() {
-		return ("The name of the crop is " + type + ", currently you have " + amount + " in your farm. The price of it is " + purchasePrice 
-				+ " dollar and you can sell it for " + sellPrice + " dollar. You can harvest it in " + daysUntilHarvest + " days.");
+		return (amount + " " + type + " which can be harvested in " + daysUntilHarvest + "days");
 	}
 	
 	public String getType() {

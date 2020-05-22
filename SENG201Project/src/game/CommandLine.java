@@ -46,32 +46,12 @@ public class CommandLine {
 		String farmName = input0.nextLine();
 		input0.close();
 		if (option == 1) {
-			ArrayList<Animal> animalList = new ArrayList<Animal>();
-			Cow myCow = new Cow();
-			myCow.addAnimals(5);
-			animalList.add(myCow);
-			
-			ArrayList<Crop> cropList = new ArrayList<Crop>();
-			ArrayList<Item> itemList = new ArrayList<Item>();
-			
-			//This needs to be set up properly
-			Fodder myFodder = new Fodder();
-			FreshHay myFreshHay = new FreshHay();
-			NewPaddock myNewPaddock = new NewPaddock();
-			TenEighty myTenEighty = new TenEighty();
-			Fertilizer myFertilizer = new Fertilizer();
-			Irrigation myIrrigation = new Irrigation();
-			
-			Farm myFarm = new Farm(10, cropList, animalList, itemList, 1, 1);
+			Farm myFarm = new Farm("Cow");
 			myFarm.setFarmer(myFarmer);
 			myFarm.setName(farmName);
 			return myFarm;
 		} else {
-			ArrayList<Animal> animalList = new ArrayList<Animal>();
-			ArrayList<Crop> cropList = new ArrayList<Crop>();
-			ArrayList<Item> itemList = new ArrayList<Item>();
-			
-			Farm myFarm = new Farm(20, cropList, animalList, itemList, 1, 1);
+			Farm myFarm = new Farm("Goldmine");
 			myFarm.setFarmer(myFarmer);
 			myFarm.setName(farmName);
 			return myFarm;
@@ -280,8 +260,8 @@ public class CommandLine {
 		myFarm.harvestCrops();
 	}
 	
-	public static void OptionNine() {
-		Farm.tending();
+	public static void OptionNine(Farm myFarm) {
+		myFarm.tending();
 	}
 	
 	public static void main(String[] args) {
@@ -334,7 +314,8 @@ public class CommandLine {
 				} else if (option == 8) {
 					CommandLine.OptionEight(myFarm);
 				} else if (option == 9) {
-					CommandLine.OptionNine();
+					CommandLine.OptionNine(myFarm);
+
 				} else {
 					CommandLine.OptionActions();
 				}

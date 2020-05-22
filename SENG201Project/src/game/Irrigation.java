@@ -2,6 +2,11 @@ package game;
 
 public class Irrigation implements Item {
 	private int amount;
+	private String name = "Irrigation";
+	
+	public Irrigation() {
+		amount = 0;
+	}
 	
 	public Irrigation(int initialAmount) {
 		amount = initialAmount;
@@ -20,5 +25,9 @@ public class Irrigation implements Item {
 	
 	public void changeAmount(int change) {
 		amount += change;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

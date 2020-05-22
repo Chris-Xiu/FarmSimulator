@@ -2,6 +2,11 @@ package game;
 
 public class Fertilizer implements Item {
 	private int amount;
+	private String name = "Fertilizer";
+	
+	public Fertilizer() {
+		amount = 0;
+	}
 	
 	public Fertilizer(int initialAmount) {
 		amount = initialAmount;
@@ -20,5 +25,9 @@ public class Fertilizer implements Item {
 	
 	public void changeAmount(int change) {
 		amount += change;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

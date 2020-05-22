@@ -2,6 +2,11 @@ package game;
 
 public class NewPaddock implements Item {
 	private int amount;
+	private String name = "New Paddock";
+	
+	public NewPaddock() {
+		amount = 0;
+	}
 	
 	public NewPaddock(int initialAmount) {
 		amount = initialAmount;
@@ -9,7 +14,7 @@ public class NewPaddock implements Item {
 	
 	public void useItem(Farm inputFarm, int typeIndex) {
 		for (Animal animal: inputFarm.getAnimalList().get(typeIndex)) {
-			animal.updateHappiness(2);
+			animal.updateHealth(2);
 		}
 		this.changeAmount(-1);
 	}
@@ -22,5 +27,8 @@ public class NewPaddock implements Item {
 		amount += change;
 	}
 	
+	public String getName() {
+		return name;
+	}
 }
 

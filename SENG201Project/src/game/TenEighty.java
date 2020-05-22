@@ -2,6 +2,11 @@ package game;
 
 public class TenEighty implements Item {
 	private int amount;
+	private String name = "1080";
+	
+	public TenEighty() {
+		amount = 0;
+	}
 	
 	public TenEighty(int initialAmount) {
 		amount = initialAmount;
@@ -20,5 +25,9 @@ public class TenEighty implements Item {
 	
 	public void changeAmount(int change) {
 		amount += change;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

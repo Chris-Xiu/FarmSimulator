@@ -1,10 +1,14 @@
 package game;
 
 import game.GUI.*;
+import javax.swing.*;
+
+
 
 public class GameEnvironment {
 	
 	private Farm theFarm;
+	private MainScreen theMainScreen;
 	private int gameDuration;
 	private int currentDay = 1;
 	private int actionTaken = 0;
@@ -46,6 +50,7 @@ public class GameEnvironment {
 	
 	public void launchMainScreen() {
 		MainScreen mainWindow = new MainScreen(this);
+		theMainScreen = mainWindow;
 	}
 	
 	public void closeMainScreen(MainScreen mainWindow) {
@@ -59,6 +64,14 @@ public class GameEnvironment {
 	public void closeSetupScreen(SetupScreen setupWindow) {
 		setupWindow.closeWindow();
 		launchMainScreen();
+	}
+	
+	public void launchStoreScreen() {
+		StoreScreen storeWindow = new StoreScreen(this, theMainScreen);
+	}
+	
+	public void closeStoreScreen(StoreScreen storeWindow) {
+		storeWindow.closeWindow();
 	}
 	
 	public static void main(String[] args) {

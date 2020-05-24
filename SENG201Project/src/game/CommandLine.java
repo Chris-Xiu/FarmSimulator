@@ -157,7 +157,7 @@ public class CommandLine {
 					}
 					
 					itemSold[typeItem] = true;
-					myFarm.buyItem(typeItem);
+					myFarm.buyItem(1, typeItem);
 				}
 			
 			

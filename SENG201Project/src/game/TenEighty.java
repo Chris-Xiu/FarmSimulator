@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class TenEighty implements Item {
 	private int amount;
 	private String name = "1080";
+	private int price = 1;
 	
 	public TenEighty() {
 		amount = 0;
@@ -31,10 +32,6 @@ public class TenEighty implements Item {
 		this.changeAmount(-1);
 	}
 	
-	public void setAmount(int initialAmount) {
-		amount = initialAmount;
-	}
-	
 	public int getAmount() {
 		return amount;
 	}
@@ -45,5 +42,9 @@ public class TenEighty implements Item {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public int getPrice() {
+		return price;
 	}
 }

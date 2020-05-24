@@ -7,4 +7,5 @@ public interface Item {
 	public int getAmount();
 	public void changeAmount(int change);
 	public String getName();
+	public int getPrice();
 	}

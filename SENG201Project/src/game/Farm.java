@@ -53,24 +53,24 @@ public class Farm {
 			myCow.addAnimals(5);
 			animalsOwned.get(0).add(myCow);
 			amountOfAnimals += 5;
-			this.getItemList().get(0).changeAmount(10);
-			this.getItemList().get(1).changeAmount(10);
-			this.getItemList().get(2).changeAmount(10);
-			this.getItemList().get(3).changeAmount(10);
-			this.getItemList().get(4).changeAmount(10);
-			this.getItemList().get(5).changeAmount(10);
+			this.getItemList().get(0).changeAmount(1);
+			this.getItemList().get(1).changeAmount(1);
+			this.getItemList().get(2).changeAmount(1);
+			this.getItemList().get(3).changeAmount(1);
+			this.getItemList().get(4).changeAmount(1);
+			this.getItemList().get(5).changeAmount(1);
 		} else {
 			Corn myCorn = new Corn();
 			myCorn.addCrops(5);
 			cropsOwned.get(0).add(myCorn);
 			moneyOwned += 10;
 			amountOfCrops += 5;
-			this.getItemList().get(0).changeAmount(10);
-			this.getItemList().get(1).changeAmount(10);
-			this.getItemList().get(2).changeAmount(10);
-			this.getItemList().get(3).changeAmount(10);
-			this.getItemList().get(4).changeAmount(10);
-			this.getItemList().get(5).changeAmount(10);
+			this.getItemList().get(0).changeAmount(1);
+			this.getItemList().get(1).changeAmount(1);
+			this.getItemList().get(2).changeAmount(1);
+			this.getItemList().get(3).changeAmount(1);
+			this.getItemList().get(4).changeAmount(1);
+			this.getItemList().get(5).changeAmount(1);
 		}
 	}
 	
@@ -170,24 +170,48 @@ public class Farm {
 		return result;
 	}
 	
+	public int getCropPrice(int type) {
+		ArrayList<Crop> cropTypeList = new ArrayList<Crop>();
+		cropTypeList.add(new Corn());
+		cropTypeList.add(new Lettuce());
+		cropTypeList.add(new Potato());
+		cropTypeList.add(new Wheat());
+		cropTypeList.add(new Tomato());
+		cropTypeList.add(new Carrot());
+		return cropTypeList.get(type).getPurchasePrice();
+	}
+	
+	public int getAnimalPrice(int type) {
+		ArrayList<Animal> animalTypeList = new ArrayList<Animal>();
+		animalTypeList.add(new Cow());
+		animalTypeList.add(new Sheep());
+		animalTypeList.add(new Deer());
+		return animalTypeList.get(type).getPurchasePrice();
+	}
+	
+	public int getItemPrice(int type) {
+		return itemsOwned.get(type).getPrice();
+	}
+	
 	public void buyCrops(int amount, int index) {
 		Crop newCrop;
-		if (index == 1) {
+		if (index == 0) {
 			newCrop = new Corn();
+		} else if (index == 1) {
+			newCrop = new Lettuce();
+		} else if (index == 2) {
+			newCrop = new Potato();
+		} else if (index == 3) {
+			newCrop = new Wheat();
+		} else if (index == 4) {
+			newCrop = new Tomato();
 		} else {
-			newCrop = new Corn();
+			newCrop = new Carrot();
 		}
-		
-		if (amount + amountOfCrops > maxCrops) {
-			System.out.println("Not enough space to plant!");
-		} else if (newCrop.getPurchasePrice() * amount > moneyOwned) {
-			System.out.println("Not enough money to buy!");
-		} else {
-			newCrop.addCrops(amount);
-			cropsOwned.get(newCrop.getIndex()).add(newCrop);
-			moneyOwned -= newCrop.getPurchasePrice() * amount;
-			amountOfCrops += amount;
-		}
+		newCrop.addCrops(amount);
+		cropsOwned.get(newCrop.getIndex()).add(newCrop);
+		moneyOwned -= newCrop.getPurchasePrice() * amount;
+		amountOfCrops += amount;
 	}
 	
 	public String harvestableCrops() {
@@ -233,24 +257,17 @@ public class Farm {
 	
 	public void buyAnimals(int amount, int index) {
 		Animal newAnimal;
-		if (index == 1) {
+		if (index == 0) {
 			newAnimal = new Cow();
+		} else if (index == 1) {
+			newAnimal = new Sheep();
 		} else {
-			newAnimal = new Cow();
+			newAnimal = new Deer();
 		}
-		
-		if (newAnimal.getPurchasePrice() * amount > moneyOwned) {
-			System.out.println("Not enough money to buy!");
-		} else {
-			newAnimal.addAnimals(amount);
-			animalsOwned.get(newAnimal.getIndex()).add(newAnimal);
-			moneyOwned -= newAnimal.getPurchasePrice() * amount;
-			amountOfAnimals += amount;
-		}
-	}
-	
-	public void buyItem(int type) {
-		itemsOwned.get(type).changeAmount(1);
+		newAnimal.addAnimals(amount);
+		animalsOwned.get(newAnimal.getIndex()).add(newAnimal);
+		moneyOwned -= newAnimal.getPurchasePrice() * amount;
+		amountOfAnimals += amount;
 	}
 	
 	public void playWithAnimals(int type) {
@@ -264,6 +281,11 @@ public class Farm {
 			animal.updateHealth(1);
 		}
 		
+	}
+	
+	public void buyItem(int amount, int index) {
+		itemsOwned.get(index).changeAmount(amount);
+		moneyOwned -= itemsOwned.get(index).getPrice() * amount;
 	}
 	
 	public ArrayList<Crop> getAllCrops(){
@@ -402,11 +424,6 @@ public class Farm {
 			int typeIndex = queryList.get(getIndex -1);
 			//Returns the index
 			return typeIndex;
-		}
-		
-		public void buyItem(Item newItem) {
-			//newItem.amount +=1;
-			newItem.changeAmount(1);
 		}
 		
 		public void displayCropOverview() {

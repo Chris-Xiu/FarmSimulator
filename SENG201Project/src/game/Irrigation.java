@@ -3,9 +3,14 @@ package game;
 public class Irrigation implements Item {
 	private int amount;
 	private String name = "Irrigation";
+	private int price = 4;
 	
 	public Irrigation() {
 		amount = 0;
+	}
+	
+	public Irrigation(int initialAmount) {
+		amount = initialAmount;
 	}
 	
 	public void useItem(Farm inputFarm, int typeIndex) {
@@ -13,10 +18,6 @@ public class Irrigation implements Item {
 			crop.updateDays(4);
 		}
 		this.changeAmount(-1);
-	}
-	
-	public void setAmount(int initialAmount) {
-		amount = initialAmount;
 	}
 	
 	public int getAmount() {
@@ -29,5 +30,9 @@ public class Irrigation implements Item {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public int getPrice() {
+		return price;
 	}
 }

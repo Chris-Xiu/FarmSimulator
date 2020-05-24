@@ -3,9 +3,14 @@ package game;
 public class FreshHay implements Item {
 	private int amount;
 	private String name = "Fresh Hay";
+	private int price = 2;
 	
 	public FreshHay() {
 		amount = 0;
+	}
+	
+	public FreshHay(int initialAmount) {
+		amount = initialAmount;
 	}
 	
 	public void useItem(Farm inputFarm, int typeIndex) {
@@ -14,10 +19,6 @@ public class FreshHay implements Item {
 			animal.updateHealthGrowth(1);
 		}
 		this.changeAmount(-1);
-	}
-	
-	public void setAmount(int initialAmount) {
-		amount = initialAmount;
 	}
 	
 	public int getAmount() {
@@ -30,6 +31,10 @@ public class FreshHay implements Item {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public int getPrice() {
+		return price;
 	}
 }
 

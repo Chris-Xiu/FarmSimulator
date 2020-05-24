@@ -1,5 +1,11 @@
 package game;
 
+/**
+ * 
+ * @author Chris Xiu
+ * @author Matthias Suppan
+ */
+
 import game.GUI.*;
 import javax.swing.*;
 

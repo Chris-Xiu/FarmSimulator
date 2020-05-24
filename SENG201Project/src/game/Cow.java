@@ -1,5 +1,11 @@
 package game;
 
+/**
+ * 
+ * @author Chris Xiu
+ * @author Matthias Suppan
+ */
+
 public class Cow extends Animal {
 	
 	public Cow() {

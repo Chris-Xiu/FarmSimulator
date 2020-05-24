@@ -1,5 +1,11 @@
 package game;
 
+/**
+ * 
+ * @author Chris Xiu
+ * @author Matthias Suppan
+ */
+
 public class FreshHay implements Item {
 	private int amount;
 	private String name = "Fresh Hay";

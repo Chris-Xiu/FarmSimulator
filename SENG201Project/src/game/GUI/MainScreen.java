@@ -5,11 +5,14 @@ import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-
 import game.*;
 import java.util.*;
 
-
+/**
+ * 
+ * @author Chris Xiu
+ * @author Matthias Suppan
+ */
 
 public class MainScreen {
 	
@@ -201,8 +204,8 @@ public class MainScreen {
 					int finalScore = moneyOwned + animalValue + cropScore + itemScore;
 					JOptionPane.showMessageDialog(mainWindow, "Victory Point Conversion:\nMoney Left: 1 dollar for 1 VP\nAnimal Farm Value: 1 dollar worth of animal for 1 VP\n"
 							+ "Crop Field Value: 2 dollar worth of crop for 1 VP (Penalty for failed to harvest)\nItem Left: 2 dollar worth of item for 1 VP"
-							+ " (Penalty for failed to harvest)\n\nYour Score:\nMoney Left: " + moneyOwned + "\nAnimal Value: " + animalValue + "\n Crop Value:"
-							+ cropValue + "\n Item Value: " + itemValue + "\nFinal Score: " + moneyOwned + " + " + animalValue + " + " + cropScore + " + "
+							+ " (Penalty for failed to harvest)\n\nYour Score:\nMoney Left: " + moneyOwned + "\nAnimal Value: " + animalValue + "\nCrop Value:"
+							+ cropValue + "\nItem Value: " + itemValue + "\nFinal Score: " + moneyOwned + " + " + animalValue + " + " + cropScore + " + "
 							+ itemScore + " = " + finalScore, "Final Score", JOptionPane.PLAIN_MESSAGE);
 					closeWindow();
 				}
@@ -227,7 +230,7 @@ public class MainScreen {
 			public void actionPerformed(ActionEvent e) {
 				if (game.getActionTaken() < 2) {
 					game.getFarm().tending();
-					JOptionPane.showMessageDialog(mainWindow, "Farmland tended, max crop, animal, happiness incrased", "Result", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(mainWindow, "Farmland tended, capacities of holding crops and animals both increased by 5\nHappiness growth rate of animals increased by 1", "Result", JOptionPane.PLAIN_MESSAGE);
 					game.takeAction();
 					
 					//Updates

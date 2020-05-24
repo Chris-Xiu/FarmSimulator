@@ -1,6 +1,12 @@
 package game;
 import java.util.*;
 
+/**
+ * 
+ * @author Chris Xiu
+ * @author Matthias Suppan
+ */
+
 public class Crop {
 	
 	private String type;
@@ -9,7 +15,6 @@ public class Crop {
 	private int sellPrice;
 	private int daysUntilHarvest;
 	private int amount = 0;
-	public static List<String> allTypes = Arrays.asList("Corn");
 	
 	public Crop(String newType, int newIndex, int newPPrice, int newSPrice, int maturity) {
 		type = newType;

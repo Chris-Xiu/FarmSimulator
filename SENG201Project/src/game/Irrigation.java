@@ -1,5 +1,11 @@
 package game;
 
+/**
+ * 
+ * @author Chris Xiu
+ * @author Matthias Suppan
+ */
+
 public class Irrigation implements Item {
 	private int amount;
 	private String name = "Irrigation";

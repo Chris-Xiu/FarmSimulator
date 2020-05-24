@@ -1,6 +1,12 @@
 package game;
 import java.util.*;
 
+/**
+ * 
+ * @author Chris Xiu
+ * @author Matthias Suppan
+ */
+
 public class Farm {
 	
 	private String name;
@@ -286,8 +292,8 @@ public class Farm {
 		return money;
 	}
 	
-	public void waterCrops(int index) {
-		for (Crop crop: cropsOwned.get(index)) {
+	public void waterCrops(int type) {
+		for (Crop crop: cropsOwned.get(type)) {
 			crop.updateDays(1);
 		}
 	}
@@ -385,6 +391,12 @@ public class Farm {
 	public void tending() {
 		maxCrops += 5;
 		maxAnimals += 5;
+		
+		for (ArrayList<Animal> list: animalsOwned) {
+			for (Animal animal: list) {
+				animal.updateHappinessGrowth(1);
+			}
+		}
 	}
 	
 	public int moveToNextDay() {
@@ -432,76 +444,4 @@ public class Farm {
 		}
 		return worth;
 	}
-	
-	//Codes for command line program
-	
-	public void feedAnimals(int type) {
-		for (Animal animal: animalsOwned.get(type)) {
-			animal.updateHealth(1);
-		}
-		
-	}
-	
-		public ArrayList<Integer> getCropTypeList() {
-			ArrayList<Integer> queryList = new ArrayList<Integer>();
-			for (int i = 0; i < cropsOwned.size(); i++) {
-				if (!cropsOwned.get(i).isEmpty()) {
-					queryList.add(i);
-				}
-			}
-			return queryList;
-		}
-		
-		public ArrayList<Integer> getAnimalTypeList() {
-			ArrayList<Integer> queryList = new ArrayList<Integer>();
-			for (int i = 0; i < animalsOwned.size(); i++) {
-				if (!animalsOwned.get(i).isEmpty()) {
-					queryList.add(i);
-				}
-			}
-			return queryList;
-		}
-		
-		public ArrayList<Integer> getItemAvailable(int start, int end) {
-			ArrayList<Integer> queryList = new ArrayList<Integer>();
-			for (int i = start; i < end; i++) {
-				if (itemsOwned.get(i).getAmount() != 0) {
-					queryList.add(i);
-				}
-			}
-			return queryList;
-		}
-		
-		public static int selectType(ArrayList<Integer> queryList, String[] queryReference) {
-			int index = 1;
-			Scanner selector = new Scanner(System.in);
-			System.out.println("Please select a type: ");
-			for (int target: queryList) {
-				System.out.println("\n" + index + " " + queryReference[target]);
-				index++;
-			}
-			int getIndex = selector.nextInt();
-			int typeIndex = queryList.get(getIndex -1);
-			return typeIndex;
-		}
-		
-		public void displayCropOverview() {
-			for (ArrayList<Crop> list: cropsOwned) {
-				if (!list.isEmpty()) {
-					for (Crop crop: list) {
-						System.out.println("You own " + crop.getAmount() + " " + crop.getType() + " which have " + crop.getDaysUntilHarvest() + " days to harvest.");
-					}
-				}
-			}
-		}
-		
-		public void displayAnimalOverview() {
-			for (ArrayList<Animal> list: animalsOwned) {
-				if (!list.isEmpty()) {
-					for (Animal animal: list) {
-						System.out.println("You own " + animal.getAmount() + " " + animal.getType() + " which have a happiness of " + animal.getHappiness() + " and a health of " + animal.getHealth() + ".");
-					}
-				}
-			}
-		}
 }

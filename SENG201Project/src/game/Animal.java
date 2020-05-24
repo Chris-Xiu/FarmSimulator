@@ -8,17 +8,15 @@ public class Animal {
 	private int happiness;
 	private int health;
 	private int happinessGrowthRate;
-	private int healthGrowthRate;
 	private int amount = 0;
 	
-	public Animal(String newType, int newIndex, int newPrice, int newHappiness, int newHealth, int newHappinessGR, int newHealthGR) {
+	public Animal(String newType, int newIndex, int newPrice, int newHappiness, int newHealth, int newHappinessGR) {
 		type = newType;
 		index = newIndex;
 		purchasePrice = newPrice;
 		happiness = newHappiness;
 		health = newHealth;
 		happinessGrowthRate = newHappinessGR;
-		healthGrowthRate = newHealthGR;
 	}
 	
 	public String toString() {
@@ -38,12 +36,7 @@ public class Animal {
 	}
 	
 	public int getTendingReward() {
-		if (happiness + health >= 10) {
-			return 2;
-		}
-		else {
-			return 1;
-		}
+		return (happiness + health) / 5;
 	}
 	
 	public int getHappiness() {
@@ -56,10 +49,6 @@ public class Animal {
 	
 	public int getHappinessGrowthRate() {
 		return happinessGrowthRate;
-	}
-	
-	public int getHealthGrowthRate() {
-		return healthGrowthRate;
 	}
 	
 	public int getAmount() {
@@ -80,9 +69,5 @@ public class Animal {
 	
 	public void updateHealth(int amount) {
 		health += amount;
-	}
-
-	public void updateHealthGrowth(int amount) {
-		healthGrowthRate += amount;
 	}
 }

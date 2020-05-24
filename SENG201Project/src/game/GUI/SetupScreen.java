@@ -108,32 +108,52 @@ public class SetupScreen {
 		typeQuestion.setBounds(10, 200, 350, 50);
 		setupWindow.getContentPane().add(typeQuestion);
 		
-		JLabel cowFarm = new JLabel("");
-		cowFarm.setIcon(new ImageIcon(SetupScreen.class.getResource("/Images/Cow.png")));
+		JLabel cowFarm = new JLabel("Cow");
 		cowFarm.setToolTipText("You the game with 5 cows. (Normally with 0)");
-		cowFarm.setFont(new Font("Arial", Font.PLAIN, 12));
+		cowFarm.setFont(new Font("Arial", Font.BOLD, 20));
 		cowFarm.setBounds(10, 250, 100, 100);
 		setupWindow.getContentPane().add(cowFarm);
 		
-		JLabel goldmineFarm = new JLabel("");
-		goldmineFarm.setIcon(new ImageIcon(SetupScreen.class.getResource("/Images/Goldmine.jpg")));
-		goldmineFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
-		goldmineFarm.setFont(new Font("Arial", Font.PLAIN, 12));
-		goldmineFarm.setBounds(120, 250, 100, 100);
-		setupWindow.getContentPane().add(goldmineFarm);
+		JLabel wheatFarm = new JLabel("Wheat");
+		wheatFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
+		wheatFarm.setFont(new Font("Arial", Font.BOLD, 20));
+		wheatFarm.setBounds(120, 250, 100, 100);
+		setupWindow.getContentPane().add(wheatFarm);
+		
+		JLabel vegetarianFarm = new JLabel("Vegetarian");
+		vegetarianFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
+		vegetarianFarm.setFont(new Font("Arial", Font.PLAIN, 15));
+		vegetarianFarm.setBounds(230, 250, 100, 100);
+		setupWindow.getContentPane().add(vegetarianFarm);
+		
+		JLabel lifestyleBlockFarm = new JLabel("Lifestyle Block");
+		lifestyleBlockFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
+		lifestyleBlockFarm.setFont(new Font("Arial", Font.PLAIN, 15));
+		lifestyleBlockFarm.setBounds(340, 250, 100, 100);
+		setupWindow.getContentPane().add(lifestyleBlockFarm);
 		
 		JRadioButton cowFarmChoice = new JRadioButton("");
 		cowFarmChoice.setSelected(true);
 		cowFarmChoice.setBounds(50, 350, 20, 20);
 		setupWindow.getContentPane().add(cowFarmChoice);
 		
-		JRadioButton goldmineFarmChoice = new JRadioButton("");
-		goldmineFarmChoice.setBounds(150, 350, 20, 20);
-		setupWindow.getContentPane().add(goldmineFarmChoice);
+		JRadioButton wheatFarmChoice = new JRadioButton("");
+		wheatFarmChoice.setBounds(150, 350, 20, 20);
+		setupWindow.getContentPane().add(wheatFarmChoice);
+		
+		JRadioButton vegetarianFarmChoice = new JRadioButton("");
+		vegetarianFarmChoice.setBounds(250, 350, 20, 20);
+		setupWindow.getContentPane().add(vegetarianFarmChoice);
+		
+		JRadioButton lifestyleBlockFarmChoice = new JRadioButton("");
+		lifestyleBlockFarmChoice.setBounds(350, 350, 20, 20);
+		setupWindow.getContentPane().add(lifestyleBlockFarmChoice);
 		
 		ButtonGroup group = new ButtonGroup();
 		group.add(cowFarmChoice);
-		group.add(goldmineFarmChoice);
+		group.add(wheatFarmChoice);
+		group.add(vegetarianFarmChoice);
+		group.add(lifestyleBlockFarmChoice);
 		
 		JLabel farmNameQuestion = new JLabel("How would you like to name your farm?");
 		farmNameQuestion.setFont(new Font("Arial", Font.BOLD, 15));
@@ -161,8 +181,12 @@ public class SetupScreen {
 				String type;
 				if (cowFarmChoice.isSelected()) {
 					type = "Cow";
+				} else if (wheatFarmChoice.isSelected()) {
+					type = "Wheat";
+				} else if (vegetarianFarmChoice.isSelected()) {
+					type = "Vegetarian";
 				} else {
-					type = "Goldmine";
+					type = "Lifestyle Block";
 				}
 				
 				Farm theFarm = new Farm(type);

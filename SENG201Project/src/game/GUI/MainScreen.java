@@ -168,28 +168,44 @@ public class MainScreen {
 		JButton nextDayButton = new JButton("Go to next day");
 		nextDayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int money = game.moveToNextDay();
-				JOptionPane.showMessageDialog(mainWindow, "Earned " + money + " dollar from your animals", "Result", JOptionPane.PLAIN_MESSAGE);
-				
-				//Updates
-				cropField.setText(game.getFarm().cropFieldStatus());
-				
-				DefaultListModel<Crop> cropListModel = new DefaultListModel<>();
-				cropListModel.addAll(game.getFarm().getAllCrops());
-				cropList.setModel(cropListModel);
-				
-				animalFarm.setText(game.getFarm().animalFarmStatus());
-				
-				DefaultListModel<Animal> animalListModel = new DefaultListModel<>();
-				animalListModel.addAll(game.getFarm().getAllAnimals());
-				animalList.setModel(animalListModel);
-				
-				moneyOwned.setText(String.valueOf(game.getFarm().getMoneyOwned()));
-				
-				dayInfo.setText("Day " + game.getCurrentDay() + " of " + game.getGameDuration() + " days");
-				
-				actionInfo.setText(game.getActionTaken() + "/2 action taken");
-				//Updates end
+				if (game.getCurrentDay() != game.getGameDuration()) {
+					int money = game.moveToNextDay();
+					JOptionPane.showMessageDialog(mainWindow, "Earned " + money + " dollar from your animals", "Result", JOptionPane.PLAIN_MESSAGE);
+					
+					//Updates
+					cropField.setText(game.getFarm().cropFieldStatus());
+					
+					DefaultListModel<Crop> cropListModel = new DefaultListModel<>();
+					cropListModel.addAll(game.getFarm().getAllCrops());
+					cropList.setModel(cropListModel);
+					
+					animalFarm.setText(game.getFarm().animalFarmStatus());
+					
+					DefaultListModel<Animal> animalListModel = new DefaultListModel<>();
+					animalListModel.addAll(game.getFarm().getAllAnimals());
+					animalList.setModel(animalListModel);
+					
+					moneyOwned.setText(String.valueOf(game.getFarm().getMoneyOwned()));
+					
+					dayInfo.setText("Day " + game.getCurrentDay() + " of " + game.getGameDuration() + " days");
+					
+					actionInfo.setText(game.getActionTaken() + "/2 action taken");
+					//Updates end
+				} else {
+					int moneyOwned = game.getFarm().getMoneyOwned();
+					int cropValue = game.getFarm().getCropValue();
+					int animalValue = game.getFarm().getAnimalValue();
+					int itemValue = game.getFarm().getAnimalValue();
+					int cropScore = cropValue / 2;
+					int itemScore = itemValue / 2;
+					int finalScore = moneyOwned + animalValue + cropScore + itemScore;
+					JOptionPane.showMessageDialog(mainWindow, "Victory Point Conversion:\nMoney Left: 1 dollar for 1 VP\nAnimal Farm Value: 1 dollar worth of animal for 1 VP\n"
+							+ "Crop Field Value: 2 dollar worth of crop for 1 VP (Penalty for failed to harvest)\nItem Left: 2 dollar worth of item for 1 VP"
+							+ " (Penalty for failed to harvest)\n\nYour Score:\nMoney Left: " + moneyOwned + "\nAnimal Value: " + animalValue + "\n Crop Value:"
+							+ cropValue + "\n Item Value: " + itemValue + "\nFinal Score: " + moneyOwned + " + " + animalValue + " + " + cropScore + " + "
+							+ itemScore + " = " + finalScore, "Final Score", JOptionPane.PLAIN_MESSAGE);
+					closeWindow();
+				}
 			}
 		});
 		nextDayButton.setFont(new Font("Arial", Font.BOLD, 20));

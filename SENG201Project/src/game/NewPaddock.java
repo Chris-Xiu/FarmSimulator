@@ -16,7 +16,7 @@ public class NewPaddock implements Item {
 	public void useItem(Farm inputFarm, int typeIndex) {
 		for (Animal animal: inputFarm.getAnimalList().get(typeIndex)) {
 			animal.updateHealth(2);
-			animal.updateHealthGrowth(1);
+			animal.updateHappinessGrowth(1);
 		}
 		this.changeAmount(-1);
 	}

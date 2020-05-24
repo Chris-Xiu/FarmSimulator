@@ -10,15 +10,11 @@ public class Farm {
 	private ArrayList<ArrayList<Crop>> cropsOwned;
 	private ArrayList<ArrayList<Animal>> animalsOwned;
 	private ArrayList<Item> itemsOwned;
-
-	private int growingBonus;
-	private int happinessBonus;
 	
 	private int maxCrops = 10;
 	private int maxAnimals = 10;
 	private int amountOfCrops = 0;
 	private int amountOfAnimals = 0;
-	private int maxHappiness = 10;
 	
 	public static final String [] animalReference = {"Cow", "Sheep", "Deer"}; 
 	public static final String [] cropReference = {"Corn", "Lettuce", "Potato", "Wheat", "Tomato", "Carrot"};
@@ -45,32 +41,77 @@ public class Farm {
 		itemsOwned.add(new FreshHay());
 		itemsOwned.add(new NewPaddock());
 		
-		growingBonus = 1;
-		happinessBonus = 1;
-		
 		if (type == "Cow") {
 			Cow myCow = new Cow();
 			myCow.addAnimals(5);
 			animalsOwned.get(0).add(myCow);
 			amountOfAnimals += 5;
-			this.getItemList().get(0).changeAmount(1);
-			this.getItemList().get(1).changeAmount(1);
-			this.getItemList().get(2).changeAmount(1);
+			
+			moneyOwned += 5;
+			
 			this.getItemList().get(3).changeAmount(1);
-			this.getItemList().get(4).changeAmount(1);
-			this.getItemList().get(5).changeAmount(1);
-		} else {
-			Corn myCorn = new Corn();
-			myCorn.addCrops(5);
-			cropsOwned.get(0).add(myCorn);
+			this.getItemList().get(4).changeAmount(2);
+			
+		} else if (type == "Wheat"){
+			Wheat myWheat = new Wheat();
+			myWheat.addCrops(6);
+			cropsOwned.get(3).add(myWheat);
+			amountOfCrops += 6;
+			
 			moneyOwned += 10;
-			amountOfCrops += 5;
+			
+			this.getItemList().get(1).changeAmount(2);
+			
+		} else if (type == "Vegetarian") {
+			Corn myCorn = new Corn();
+			myCorn.addCrops(1);
+			Lettuce myLettuce = new Lettuce();
+			myLettuce.addCrops(1);
+			Potato myPotato = new Potato();
+			myPotato.addCrops(1);
+			Wheat myWheat = new Wheat();
+			myWheat.addCrops(1);
+			Tomato myTomato = new Tomato();
+			myTomato.addCrops(1);
+			Carrot myCarrot = new Carrot();
+			myCarrot.addCrops(1);
+			
+			cropsOwned.get(0).add(myCorn);
+			cropsOwned.get(1).add(myLettuce);
+			cropsOwned.get(2).add(myPotato);
+			cropsOwned.get(3).add(myWheat);
+			cropsOwned.get(4).add(myTomato);
+			cropsOwned.get(5).add(myCarrot);
+			amountOfCrops += 6;
+			
+			moneyOwned += 5;
+			
 			this.getItemList().get(0).changeAmount(1);
-			this.getItemList().get(1).changeAmount(1);
-			this.getItemList().get(2).changeAmount(1);
-			this.getItemList().get(3).changeAmount(1);
-			this.getItemList().get(4).changeAmount(1);
-			this.getItemList().get(5).changeAmount(1);
+			
+		} else {
+			Lettuce myLettuce = new Lettuce();
+			myLettuce.addCrops(1);
+			Potato myPotato = new Potato();
+			myPotato.addCrops(1);
+			Tomato myTomato = new Tomato();
+			myTomato.addCrops(1);
+			Carrot myCarrot = new Carrot();
+			myCarrot.addCrops(1);
+			
+			cropsOwned.get(1).add(myLettuce);
+			cropsOwned.get(2).add(myPotato);
+			cropsOwned.get(4).add(myTomato);
+			cropsOwned.get(5).add(myCarrot);
+			amountOfCrops += 4;
+			
+			Sheep mySheep = new Sheep();
+			mySheep.addAnimals(2);
+			animalsOwned.get(1).add(mySheep);
+			amountOfAnimals += 2;
+			
+			moneyOwned += 10;
+			
+			this.getItemList().get(0).changeAmount(1);
 		}
 	}
 	
@@ -126,10 +167,6 @@ public class Farm {
 		return amountOfAnimals;
 	}
 	
-	public int getMaxHappiness() {
-		return maxHappiness;
-	}
-	
 	public String cropFieldStatus() {
 		int available = maxCrops - amountOfCrops;
 		return (amountOfCrops + " crops in the field, " + available + " more can be planted.");
@@ -137,7 +174,7 @@ public class Farm {
 	
 	public String animalFarmStatus() {
 		int available = maxAnimals - amountOfAnimals;
-		return (amountOfAnimals + " animals in the farm, " + available + " more can be raised. Max happiness is " + maxHappiness);
+		return (amountOfAnimals + " animals in the farm, " + available + " more can be raised.");
 	}
 	
 	public int getCropIndex(String type) {
@@ -272,15 +309,8 @@ public class Farm {
 	
 	public void playWithAnimals(int type) {
 		for (Animal animal: animalsOwned.get(type)) {
-			animal.updateHappiness(1);
+			animal.updateHappiness(5);
 		}
-	}
-	
-	public void feedAnimals(int type) {
-		for (Animal animal: animalsOwned.get(type)) {
-			animal.updateHealth(1);
-		}
-		
 	}
 	
 	public void buyItem(int amount, int index) {
@@ -355,7 +385,6 @@ public class Farm {
 	public void tending() {
 		maxCrops += 5;
 		maxAnimals += 5;
-		maxHappiness += 5;
 	}
 	
 	public int moveToNextDay() {
@@ -369,15 +398,50 @@ public class Farm {
 		for (ArrayList<Animal> list: animalsOwned) {
 			for (Animal animal: list) {
 				money += animal.getAmount() * animal.getTendingReward();
+				animal.updateHappiness(animal.getHappinessGrowthRate());
 			}
 		}
 		moneyOwned += money;
 		return money;
 	}
 	
+	public int getCropValue() {
+		int worth = 0;
+		for (ArrayList<Crop> list: cropsOwned) {
+			for (Crop crop: new ArrayList<>(list)) {
+				worth += crop.getAmount() * crop.getSellPrice();
+			}
+		}
+		return worth;
+	}
+	
+	public int getAnimalValue() {
+		int worth = 0;
+		for (ArrayList<Animal> list: animalsOwned) {
+			for (Animal animal: list) {
+				worth += (animal.getHappiness() + animal.getHealth()) / 2;
+			}
+		}
+		return worth;
+	}
+	
+	public int getItemValue() {
+		int worth = 0;
+		for (Item item: itemsOwned) {
+			worth += item.getAmount() * item.getPrice();
+		}
+		return worth;
+	}
+	
 	//Codes for command line program
 	
-	//Creates a list of type's that an item can be applied to. Needs an error condition if none are owned.
+	public void feedAnimals(int type) {
+		for (Animal animal: animalsOwned.get(type)) {
+			animal.updateHealth(1);
+		}
+		
+	}
+	
 		public ArrayList<Integer> getCropTypeList() {
 			ArrayList<Integer> queryList = new ArrayList<Integer>();
 			for (int i = 0; i < cropsOwned.size(); i++) {
@@ -388,7 +452,6 @@ public class Farm {
 			return queryList;
 		}
 		
-		//Creates a list of type's that an item can be applied to. Needs an error condition if none are owned.
 		public ArrayList<Integer> getAnimalTypeList() {
 			ArrayList<Integer> queryList = new ArrayList<Integer>();
 			for (int i = 0; i < animalsOwned.size(); i++) {
@@ -399,7 +462,6 @@ public class Farm {
 			return queryList;
 		}
 		
-		//Creates a list of items available. Needs an error condition if none are owned.
 		public ArrayList<Integer> getItemAvailable(int start, int end) {
 			ArrayList<Integer> queryList = new ArrayList<Integer>();
 			for (int i = start; i < end; i++) {
@@ -410,7 +472,6 @@ public class Farm {
 			return queryList;
 		}
 		
-		//Returns the index of a user selected type,
 		public static int selectType(ArrayList<Integer> queryList, String[] queryReference) {
 			int index = 1;
 			Scanner selector = new Scanner(System.in);
@@ -419,10 +480,8 @@ public class Farm {
 				System.out.println("\n" + index + " " + queryReference[target]);
 				index++;
 			}
-			//User input is taken, converted to an integer, and the correct index for the storage list is retrieved.
 			int getIndex = selector.nextInt();
 			int typeIndex = queryList.get(getIndex -1);
-			//Returns the index
 			return typeIndex;
 		}
 		

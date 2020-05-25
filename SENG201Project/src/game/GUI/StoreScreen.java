@@ -320,7 +320,9 @@ public class StoreScreen {
 		deerPrice.setBounds(350, 470, 100, 30);
 		storeWindow.getContentPane().add(deerPrice);
 		
-		JButton tenEightyButton = new JButton("1080");
+		JButton tenEightyButton = new JButton("");
+		tenEightyButton.setToolTipText("1080 reduces days to harvest by 2 but reduces all your Animal's health by 1!");
+		tenEightyButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/TenEighty.png")));
 		tenEightyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyItem(0);
@@ -330,7 +332,9 @@ public class StoreScreen {
 		tenEightyButton.setBounds(50, 40, 100, 100);
 		storeWindow.getContentPane().add(tenEightyButton);
 		
-		JButton fertilizerButton = new JButton("Fertilizer");
+		JButton fertilizerButton = new JButton("");
+		fertilizerButton.setToolTipText("Fertilizer reduces days to harvest by 3 and has no side effects.");
+		fertilizerButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Fertilizer.png")));
 		fertilizerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyItem(1);
@@ -340,7 +344,9 @@ public class StoreScreen {
 		fertilizerButton.setBounds(200, 40, 100, 100);
 		storeWindow.getContentPane().add(fertilizerButton);
 		
-		JButton irrigationButton = new JButton("Irrigation");
+		JButton irrigationButton = new JButton("");
+		irrigationButton.setToolTipText("Irrigation reduces days to harvest by 5.");
+		irrigationButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Irrigation.png")));
 		irrigationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyItem(2);
@@ -350,7 +356,9 @@ public class StoreScreen {
 		irrigationButton.setBounds(350, 40, 100, 100);
 		storeWindow.getContentPane().add(irrigationButton);
 		
-		JButton fodderButton = new JButton("Fodder");
+		JButton fodderButton = new JButton("");
+		fodderButton.setToolTipText("Fodder increases your Animal's health by 1.");
+		fodderButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Fodder.png")));
 		fodderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyItem(3);
@@ -360,7 +368,9 @@ public class StoreScreen {
 		fodderButton.setBounds(500, 40, 100, 100);
 		storeWindow.getContentPane().add(fodderButton);
 		
-		JButton freshHayButton = new JButton("Fresh Hay");
+		JButton freshHayButton = new JButton("");
+		freshHayButton.setToolTipText("Fresh hay increases your Animal;s health by 2 and makes their happiness increase by 1 every day.");
+		freshHayButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/FreshHay.png")));
 		freshHayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyItem(4);
@@ -370,7 +380,9 @@ public class StoreScreen {
 		freshHayButton.setBounds(650, 40, 100, 100);
 		storeWindow.getContentPane().add(freshHayButton);
 		
-		JButton newPaddockButton = new JButton("New Paddock");
+		JButton newPaddockButton = new JButton("");
+		newPaddockButton.setToolTipText("A New Paddock increases your Animal's health by 4 and increases their happiness by 2 every day!");
+		newPaddockButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/NewPaddock.png")));
 		newPaddockButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyItem(5);
@@ -380,7 +392,9 @@ public class StoreScreen {
 		newPaddockButton.setBounds(800, 40, 100, 100);
 		storeWindow.getContentPane().add(newPaddockButton);
 		
-		JButton cornButton = new JButton("Corn");
+		JButton cornButton = new JButton("");
+		cornButton.setToolTipText("Corn takes 4 days to grow and sells for $9.");
+		cornButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Corn.png")));
 		cornButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyCrop(0);
@@ -390,7 +404,9 @@ public class StoreScreen {
 		cornButton.setBounds(50, 225, 100, 100);
 		storeWindow.getContentPane().add(cornButton);
 		
-		JButton lettuceButton = new JButton("Lettuce");
+		JButton lettuceButton = new JButton("");
+		lettuceButton.setToolTipText("Lettuce takes 2 days to grow and sells for $4.");
+		lettuceButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Lettuce.png")));
 		lettuceButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyCrop(1);
@@ -400,7 +416,9 @@ public class StoreScreen {
 		lettuceButton.setBounds(200, 225, 100, 100);
 		storeWindow.getContentPane().add(lettuceButton);
 		
-		JButton patatoButton = new JButton("Potato");
+		JButton patatoButton = new JButton("");
+		patatoButton.setToolTipText("Patatoes take 5 days to grow and sell for $8.");
+		patatoButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Potato.png")));
 		patatoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyCrop(2);
@@ -410,7 +428,9 @@ public class StoreScreen {
 		patatoButton.setBounds(350, 225, 100, 100);
 		storeWindow.getContentPane().add(patatoButton);
 		
-		JButton wheatButton = new JButton("Wheat");
+		JButton wheatButton = new JButton("");
+		wheatButton.setToolTipText("Wheat takes 3 days to grow and sells for $5.");
+		wheatButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Wheat.png")));
 		wheatButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyCrop(3);
@@ -420,7 +440,9 @@ public class StoreScreen {
 		wheatButton.setBounds(500, 225, 100, 100);
 		storeWindow.getContentPane().add(wheatButton);
 		
-		JButton tomatoButton = new JButton("Tomato");
+		JButton tomatoButton = new JButton("");
+		tomatoButton.setToolTipText("Tomatoes take 2 days to grow and sells for $6.");
+		tomatoButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Tomato.png")));
 		tomatoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyCrop(4);
@@ -430,7 +452,8 @@ public class StoreScreen {
 		tomatoButton.setBounds(650, 225, 100, 100);
 		storeWindow.getContentPane().add(tomatoButton);
 		
-		JButton carrotButton = new JButton("Carrot");
+		JButton carrotButton = new JButton("Carrots take 1 day to grow and sells for $3.");
+		carrotButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Carrot.png")));
 		carrotButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyCrop(5);
@@ -441,35 +464,38 @@ public class StoreScreen {
 		storeWindow.getContentPane().add(carrotButton);
 		
 		JButton cowButton = new JButton("");
+		cowButton.setToolTipText("Cows have a happiness of 2 and a health of 6. They lose 2 happiness a day. You should fix that as soon as you can!");
+		cowButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Cow.png")));
 		cowButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyAnimal(0);
 			}
 		});
 		cowButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		cowButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Cow.png")));
 		cowButton.setBounds(50, 370, 100, 100);
 		storeWindow.getContentPane().add(cowButton);
 		
 		JButton sheepButton = new JButton("");
+		sheepButton.setToolTipText("Sheep have a happiness of 4 and a health of 4. They don't require much maintenance.");
+		sheepButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Sheep.png")));
 		sheepButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyAnimal(1);
 			}
 		});
 		sheepButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		sheepButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Sheep.jpg")));
 		sheepButton.setBounds(200, 370, 100, 100);
 		storeWindow.getContentPane().add(sheepButton);
 		
 		JButton deerButton = new JButton("");
+		deerButton.setToolTipText("Deer have a happiness of 2 and a health of 2. They gain 2 health a day. Quite the investment!");
+		deerButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Deer.png")));
 		deerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buyAnimal(2);
 			}
 		});
 		deerButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		deerButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Deer.jpg")));
 		deerButton.setBounds(350, 370, 100, 100);
 		storeWindow.getContentPane().add(deerButton);
 		

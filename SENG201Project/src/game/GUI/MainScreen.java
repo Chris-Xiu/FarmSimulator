@@ -283,7 +283,7 @@ public class MainScreen {
 								;
 							}
 						} else if (choice == 1) {
-							String cropChoice = (String) JOptionPane.showInputDialog(mainWindow, "What type of crop do you want to water?", 
+							String cropChoice = (String) JOptionPane.showInputDialog(mainWindow, "What type of crop do you want to use item on?", 
 									"Choose type of crop", JOptionPane.QUESTION_MESSAGE, null, ownedCropList, null);
 							if (cropChoice != null) {
 								int cropIndex = game.getFarm().getCropIndex(cropChoice);

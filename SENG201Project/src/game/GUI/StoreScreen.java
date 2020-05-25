@@ -447,7 +447,6 @@ public class StoreScreen {
 			}
 		});
 		cowButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		cowButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Cow.png")));
 		cowButton.setBounds(50, 370, 100, 100);
 		storeWindow.getContentPane().add(cowButton);
 		
@@ -458,7 +457,6 @@ public class StoreScreen {
 			}
 		});
 		sheepButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		sheepButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Sheep.jpg")));
 		sheepButton.setBounds(200, 370, 100, 100);
 		storeWindow.getContentPane().add(sheepButton);
 		
@@ -469,7 +467,6 @@ public class StoreScreen {
 			}
 		});
 		deerButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		deerButton.setIcon(new ImageIcon(StoreScreen.class.getResource("/Images/Deer.jpg")));
 		deerButton.setBounds(350, 370, 100, 100);
 		storeWindow.getContentPane().add(deerButton);
 		

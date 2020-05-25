@@ -113,25 +113,28 @@ public class SetupScreen {
 		typeQuestion.setBounds(10, 200, 350, 50);
 		setupWindow.getContentPane().add(typeQuestion);
 		
-		JLabel cowFarm = new JLabel("Cow");
+		JLabel cowFarm = new JLabel("");
 		cowFarm.setToolTipText("You the game with 5 cows. (Normally with 0)");
 		cowFarm.setFont(new Font("Arial", Font.BOLD, 20));
 		cowFarm.setBounds(10, 250, 100, 100);
 		setupWindow.getContentPane().add(cowFarm);
 		
-		JLabel wheatFarm = new JLabel("Wheat");
+		JLabel wheatFarm = new JLabel("");
+		wheatFarm.setIcon(new ImageIcon(SetupScreen.class.getResource("/Images/Wheat.png")));
 		wheatFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
 		wheatFarm.setFont(new Font("Arial", Font.BOLD, 20));
 		wheatFarm.setBounds(120, 250, 100, 100);
 		setupWindow.getContentPane().add(wheatFarm);
 		
-		JLabel vegetarianFarm = new JLabel("Vegetarian");
+		JLabel vegetarianFarm = new JLabel("");
+		vegetarianFarm.setIcon(new ImageIcon(SetupScreen.class.getResource("/Images/Salad.png")));
 		vegetarianFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
 		vegetarianFarm.setFont(new Font("Arial", Font.PLAIN, 15));
 		vegetarianFarm.setBounds(230, 250, 100, 100);
 		setupWindow.getContentPane().add(vegetarianFarm);
 		
-		JLabel lifestyleBlockFarm = new JLabel("Lifestyle Block");
+		JLabel lifestyleBlockFarm = new JLabel("");
+		lifestyleBlockFarm.setIcon(new ImageIcon(SetupScreen.class.getResource("/Images/Sheep.png")));
 		lifestyleBlockFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
 		lifestyleBlockFarm.setFont(new Font("Arial", Font.PLAIN, 15));
 		lifestyleBlockFarm.setBounds(340, 250, 100, 100);

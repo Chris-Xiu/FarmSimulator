@@ -1,7 +1,7 @@
 package game;
 
 /**
- * This class implements Animals that can be kept in the farm
+ * This class implements animals that can be raised in the farm
  * 
  * @author Chris Xiu
  * @author Matthias Suppan
@@ -69,7 +69,7 @@ public class Animal {
 	/**
 	 * Returns the species of the animal
 	 * 
-	 * @return the species of the animal
+	 * @return The species of the animal
 	 */
 	public String getType() {
 		return type;
@@ -78,7 +78,7 @@ public class Animal {
 	/**
 	 * Returns the index of the arrayList of this animal
 	 * 
-	 * @return the index of the arrayList of this animal
+	 * @return The index of the arrayList of this animal
 	 */
 	public int getIndex() {
 		return index;
@@ -87,25 +87,30 @@ public class Animal {
 	/**
 	 * Returns the price of the animal
 	 * 
-	 * @return the purchase price of the animal
+	 * @return The purchase price of the animal
 	 */
 	public int getPurchasePrice() {
 		return purchasePrice;
 	}
 	
 	/**
-	 * Returns the money earned for tending the animal through feeding
+	 * Returns the money earned for the daily bonus from the animal, minimum is 0
 	 * 
-	 * @return the money reward for tending the animal
+	 * @return The daily reward for tending the animal
 	 */
 	public int getTendingReward() {
-		return (happiness + health) / 5;
+		int amount = (happiness + health) / 5;
+		if (amount > 0) {
+			return amount;
+		} else {
+			return 0;
+		}
 	}
 	
 	/**
 	 * Returns the happiness level of the animal
 	 * 
-	 * @return the happiness level of the animal
+	 * @return The happiness level of the animal
 	 */
 	public int getHappiness() {
 		return happiness;
@@ -114,7 +119,7 @@ public class Animal {
 	/**
 	 * Returns the healthiness level of the animal
 	 * 
-	 * @return the healthiness level of the animal
+	 * @return The healthiness level of the animal
 	 */
 	public int getHealth() {
 		return health;
@@ -123,7 +128,7 @@ public class Animal {
 	/**
 	 * Returns the growth rate of the happiness level everyday of the animal
 	 * 
-	 * @return the growth rate of the happiness level everyday of the animal
+	 * @return The growth rate of the happiness level everyday of the animal
 	 */
 	public int getHappinessGrowthRate() {
 		return happinessGrowthRate;
@@ -132,7 +137,7 @@ public class Animal {
 	/**
 	 * Returns the amount of the animal
 	 * 
-	 * @return the amount of the animal
+	 * @return The amount of the animal
 	 */
 	public int getAmount() {
 		return amount;

@@ -1,8 +1,8 @@
-package main.GUI;
+package game.GUI;
 
 import javax.swing.*;
 
-import main.*;
+import game.*;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;

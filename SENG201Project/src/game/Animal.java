@@ -1,7 +1,7 @@
 package game;
 
 /**
- * This class implements crops that can be grown in the farm
+ * This class implements Animals that can be kept in the farm
  * 
  * @author Chris Xiu
  * @author Matthias Suppan

@@ -2,6 +2,7 @@ package game;
 import java.util.*;
 
 /**
+ * This class implements crops that can be grown in the farm
  * 
  * @author Chris Xiu
  * @author Matthias Suppan

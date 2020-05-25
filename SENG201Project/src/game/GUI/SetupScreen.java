@@ -114,28 +114,29 @@ public class SetupScreen {
 		setupWindow.getContentPane().add(typeQuestion);
 		
 		JLabel cowFarm = new JLabel("");
-		cowFarm.setToolTipText("You the game with 5 cows. (Normally with 0)");
+		cowFarm.setIcon(new ImageIcon(SetupScreen.class.getResource("/Images/Cow.png")));
+		cowFarm.setToolTipText("You are a typical and rugged Dairy Farmer. Are you brave enough to only own Cows?");
 		cowFarm.setFont(new Font("Arial", Font.BOLD, 20));
 		cowFarm.setBounds(10, 250, 100, 100);
 		setupWindow.getContentPane().add(cowFarm);
 		
 		JLabel wheatFarm = new JLabel("");
 		wheatFarm.setIcon(new ImageIcon(SetupScreen.class.getResource("/Images/Wheat.png")));
-		wheatFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
+		wheatFarm.setToolTipText("You are a humble wheat farmer. Will you continue the tradition or diversify the farm?");
 		wheatFarm.setFont(new Font("Arial", Font.BOLD, 20));
 		wheatFarm.setBounds(120, 250, 100, 100);
 		setupWindow.getContentPane().add(wheatFarm);
 		
 		JLabel vegetarianFarm = new JLabel("");
 		vegetarianFarm.setIcon(new ImageIcon(SetupScreen.class.getResource("/Images/Salad.png")));
-		vegetarianFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
+		vegetarianFarm.setToolTipText("Your farm is basically a salad. Will you keep it vegetarian or spice things up?");
 		vegetarianFarm.setFont(new Font("Arial", Font.PLAIN, 15));
 		vegetarianFarm.setBounds(230, 250, 100, 100);
 		setupWindow.getContentPane().add(vegetarianFarm);
 		
 		JLabel lifestyleBlockFarm = new JLabel("");
 		lifestyleBlockFarm.setIcon(new ImageIcon(SetupScreen.class.getResource("/Images/Sheep.png")));
-		lifestyleBlockFarm.setToolTipText("You start the game with 20 dollars. (Normally with 10)");
+		lifestyleBlockFarm.setToolTipText("You have had a midlife crisis and purchased some land and a few sheep. Are you able to become a proper farmer?");
 		lifestyleBlockFarm.setFont(new Font("Arial", Font.PLAIN, 15));
 		lifestyleBlockFarm.setBounds(340, 250, 100, 100);
 		setupWindow.getContentPane().add(lifestyleBlockFarm);

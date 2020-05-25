@@ -1,4 +1,4 @@
-package game;
+package main;
 
 /**
  * 
@@ -6,16 +6,16 @@ package game;
  * @author Matthias Suppan
  */
 
-public class NewPaddock implements Item {
+public class FreshHay implements Item {
 	private int amount;
-	private String name = "New Paddock";
-	private int price = 4;
+	private String name = "Fresh Hay";
+	private int price = 2;
 	
-	public NewPaddock() {
+	public FreshHay() {
 		amount = 0;
 	}
 	
-	public NewPaddock(int initialAmount) {
+	public FreshHay(int initialAmount) {
 		amount = initialAmount;
 	}
 	

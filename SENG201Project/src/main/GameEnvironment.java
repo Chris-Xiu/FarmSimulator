@@ -1,13 +1,8 @@
-package game;
+package main;
 
-/**
- * 
- * @author Chris Xiu
- * @author Matthias Suppan
- */
-
-import game.GUI.*;
 import javax.swing.*;
+
+import main.GUI.*;
 
 
 

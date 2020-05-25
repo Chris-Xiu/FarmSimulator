@@ -1,4 +1,4 @@
-package game;
+package main;
 
 /**
  * 
@@ -6,22 +6,22 @@ package game;
  * @author Matthias Suppan
  */
 
-public class Fertilizer implements Item {
+public class Irrigation implements Item {
 	private int amount;
-	private String name = "Fertilizer";
-	private int price = 2;
+	private String name = "Irrigation";
+	private int price = 4;
 	
-	public Fertilizer() {
+	public Irrigation() {
 		amount = 0;
 	}
 	
-	public Fertilizer(int initialAmount) {
+	public Irrigation(int initialAmount) {
 		amount = initialAmount;
 	}
 	
 	public void useItem(Farm inputFarm, int typeIndex) {
 		for (Crop crop: inputFarm.getCropList().get(typeIndex)) {
-			crop.updateDays(2);
+			crop.updateDays(4);
 		}
 		this.changeAmount(-1);
 	}

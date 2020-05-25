@@ -1,4 +1,4 @@
-package game;
+package main;
 import java.util.*;
 
 /**
@@ -25,7 +25,7 @@ public class Crop {
 	}
 	
 	public String toString() {
-		return (amount + " " + type + " which can be harvested in " + daysUntilHarvest + "days");
+		return (amount + " " + type + " which can be harvested in " + daysUntilHarvest + " days");
 	}
 	
 	public String getType() {

@@ -1,11 +1,13 @@
-package game.GUI;
+package main.GUI;
 
 import javax.swing.*;
+
+import main.*;
+
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import game.*;
 import java.util.*;
 import java.awt.Color;
 
